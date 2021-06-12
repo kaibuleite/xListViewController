@@ -1,0 +1,32 @@
+PODS:
+  - MJRefresh (3.6.1)
+  - xExtension (1.0.6)
+  - xListViewController (1.0.0):
+    - MJRefresh
+    - xExtension
+    - xModel
+  - xModel (1.0.2)
+
+DEPENDENCIES:
+  - xListViewController (from `../`)
+
+SPEC REPOS:
+  https://github.com/kaibuleite/xSpecs.git:
+    - xExtension
+    - xModel
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - MJRefresh
+
+EXTERNAL SOURCES:
+  xListViewController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
+  xExtension: d141e757ab53a7e0ab73de4cf652d43554c5f80d
+  xListViewController: 13325b14a89034c1b02e99ee955b8acad177b41a
+  xModel: ed92ab510d923b418679b24d925dd11b2c87f91d
+
+PODFILE CHECKSUM: 67e8464cc7580b7823f8d5cebef8610d32138fd8
+
+COCOAPODS: 1.9.1

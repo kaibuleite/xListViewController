@@ -1,0 +1,34 @@
+{
+  "name": "xListViewController",
+  "version": "1.0.0",
+  "summary": "A short description of xListViewController.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/kaibuleite/xListViewController",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "kaibuleite": "177955297@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/kaibuleite/xListViewController.git",
+    "tag": "1.0.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "xListViewController/Classes/**/*",
+  "resources": "xListViewController/Assets/**/*",
+  "dependencies": {
+    "MJRefresh": [
+
+    ],
+    "xExtension": [
+
+    ],
+    "xModel": [
+
+    ]
+  }
+}
