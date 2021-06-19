@@ -198,12 +198,14 @@ fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/xDefine/xDefine.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/xExtension/xExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/xListViewController/xListViewController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/xModel/xModel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/xDefine/xDefine.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/xExtension/xExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/xListViewController/xListViewController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/xModel/xModel.framework"

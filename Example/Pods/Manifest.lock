@@ -1,6 +1,8 @@
 PODS:
   - MJRefresh (3.6.1)
-  - xExtension (1.0.6)
+  - xDefine (1.0.2)
+  - xExtension (1.0.8):
+    - xDefine
   - xListViewController (1.0.0):
     - MJRefresh
     - xExtension
@@ -12,6 +14,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/kaibuleite/xSpecs.git:
+    - xDefine
     - xExtension
     - xModel
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
@@ -23,7 +26,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
-  xExtension: d141e757ab53a7e0ab73de4cf652d43554c5f80d
+  xDefine: 0df7b51c0e6edb71ca9fd667f728699d0a7a1b12
+  xExtension: f53765a72cdb40b8dd8106f37c426d7b4084ba05
   xListViewController: 13325b14a89034c1b02e99ee955b8acad177b41a
   xModel: ed92ab510d923b418679b24d925dd11b2c87f91d
 
