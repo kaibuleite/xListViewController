@@ -7,8 +7,12 @@
 
 import UIKit
 
-class xListNoDataView: UIView {
+public class xListNoDataView: UIView {
 
+    // MARK: - IBOutlet Property
+    @IBOutlet public weak var tipIcon: UIImageView!
+    @IBOutlet public weak var tipLbl: UILabel!
+    
     // MARK: - Public Func
     public class func loadNib() -> xListNoDataView {
         let bundle = Bundle.init(for: self.classForCoder())

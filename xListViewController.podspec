@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'xListViewController'
-  s.version          = '1.0.2'
+  s.version          = '1.0.3'
   s.summary          = 'A short description of xListViewController.'
   s.swift_version    = '5'      # Swift版本号
 
@@ -29,7 +29,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/kaibuleite/xListViewController.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '12.0'
   # 类文件
   s.source_files = 'xListViewController/Classes/**/*'
   # 资源文件（文件会直接放到目录下）
