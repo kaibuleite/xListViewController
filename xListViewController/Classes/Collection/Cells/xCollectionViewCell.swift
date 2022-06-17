@@ -17,7 +17,9 @@ open class xCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Open Func
     /// 设置内容数据
-    open func setContentData(with model : xModel)
+    open func setContentData(in cvc : UICollectionViewController,
+                             at idp : IndexPath,
+                             with model : xModel)
     {
         /* 设置缓存图片
         let icon = UIImageView.init()
@@ -29,7 +31,9 @@ open class xCollectionViewCell: UICollectionViewCell {
         } */
     }
     /// 设置滚动结束后中内容数据（一般放下载图片，需要设置tvc的 isOpenReloadDragScrollingEndVisibleCells = true）
-    open func setDragScrollingEndContentData(with model : xModel)
+    open func setDragScrollingEndContentData(in cvc : UICollectionViewController,
+                                             at idp : IndexPath,
+                                             with model : xModel)
     {
         /* 异步下载图片（该方法会在scrollview停止滚动后才调用，优化性能
         let icon = UIImageView.init()
@@ -37,10 +41,12 @@ open class xCollectionViewCell: UICollectionViewCell {
         icon.sd_setImage(with: imgurl.xToURL(), placeholderImage: xAppManager.shared.placeholderImage, options: .retryFailed, completed: nil)
          */
     }
-    /// 添加按钮事件
-    open func addBtnClickHandler(in xcvc : xCollectionViewController,
-                                 model : xModel)
+    
+    /// 内容高度
+    open class func contentSize() -> CGSize
     {
-        
+        var size = CGSize.zero
+        size.height += 45
+        return size
     }
 }
