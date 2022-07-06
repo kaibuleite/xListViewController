@@ -17,29 +17,27 @@ open class xTableViewCell: UITableViewCell {
     
     // MARK: - Open Func
     /// 设置内容数据
-    open func setContentData(in tvc : UITableViewController,
+    open func setContentData(in tvc : xTableViewController? = nil,
                              at idp : IndexPath,
                              with model : xModel)
     {
-        /* 设置缓存图片
-        let icon = UIImageView.init()
-        let imgurl = ""
-        if let img = xAppManager.getSDCacheImage(forKey: imgurl) {
-            icon.image = img
+        /*
+        tvc.isOpenReloadDragScrollingEndVisibleCells = true
+        if tvc.isDragScrolling {
+            // 设置缓存图片
+            let icon = UIImageView.init()
+            let imgurl = ""
+            if let img = xAppManager.getSDCacheImage(forKey: imgurl) {
+                icon.image = img
+            } else {
+                icon.image = xAppManager.shared.placeholderImage
+            }
         } else {
-            icon.image = xAppManager.shared.placeholderImage
-        } */
-    }
-    /// 设置滚动结束后中内容数据（一般放下载图片，需要设置tvc的 isOpenReloadDragScrollingEndVisibleCells = true）
-    open func setDragScrollingEndContentData(in tvc : UITableViewController,
-                                             at idp : IndexPath,
-                                             with model : xModel)
-    {
-        /* 异步下载图片（该方法会在scrollview停止滚动后才调用，优化性能
-        let icon = UIImageView.init()
-        let imgurl = ""
-        icon.sd_setImage(with: imgurl.xToURL(), placeholderImage: xAppManager.shared.placeholderImage, options: .retryFailed, completed: nil)
-         */
+            // 异步下载图片（该方法会在scrollview停止滚动后才调用，优化性能
+            let icon = UIImageView.init()
+            let imgurl = ""
+            icon.sd_setImage(with: imgurl.xToURL(), placeholderImage: xAppManager.shared.placeholderImage, options: .retryFailed, completed: nil)
+        }*/
     }
     
     /// 内容高度

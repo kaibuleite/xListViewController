@@ -69,7 +69,7 @@ open class xCollectionViewController: UICollectionViewController {
         if self.isRootParentViewController {
             print("****************************")
         }
-        print("🥀 \(self.xTitle) \(self.xClassInfoStruct.name)")
+        print("🥀 \(self.xClassInfoStruct.name)")
     }
     
     // MARK: - Open Override Func
