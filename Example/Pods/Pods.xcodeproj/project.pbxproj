@@ -10,6 +10,8 @@
 		00DF1DB75B595D201B44CFFEC168FCF5 /* View+xToValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A01028D7274365A1A60BA6283545B /* View+xToValue.swift */; };
 		01170D1B07440A4176B8CFAE45D2D9E9 /* xListViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 065E8A4C6A6C863748D7538FF2E8B580 /* xListViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		01997C5A8E4D5B383302236D0606ED18 /* xCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16B0BBBD051FA52E43E52B5E6A3FED /* xCollectionViewController.swift */; };
+		041FF11E28752F71005722DE /* xDefaultListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FF11D28752F71005722DE /* xDefaultListTableViewController.swift */; };
+		041FF1202875340A005722DE /* xDefaultListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041FF11F2875340A005722DE /* xDefaultListCollectionViewController.swift */; };
 		05DB06EE69146297DD1D9B11693686C8 /* no_data@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 535C26B0DCA789816356ADE6F98C16F6 /* no_data@3x.png */; };
 		09CC6B6255031B2989D8FA589ACD0692 /* View+xEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC273634EB04B7E72E4E5B7E2CA1DEC /* View+xEdit.swift */; };
 		1093A7A0C1F971B7C153709421F2E229 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F449677339F6828FC852144169E2507D /* Notification.swift */; };
@@ -225,6 +227,8 @@
 		002F3A17AC204B5DA0FACC85299B0F5C /* Color+xEdit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Color+xEdit.swift"; path = "xExtension/Classes/Kit/Color/Color+xEdit.swift"; sourceTree = "<group>"; };
 		004EE5BA60E950FDD95DE69B3E879544 /* MJRefreshAutoStateFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoStateFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.h; sourceTree = "<group>"; };
 		0217D3F483223E8402FC2BBCB0A966B3 /* Image+xToValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Image+xToValue.swift"; path = "xExtension/Classes/Kit/Image/Image+xToValue.swift"; sourceTree = "<group>"; };
+		041FF11D28752F71005722DE /* xDefaultListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xDefaultListTableViewController.swift; sourceTree = "<group>"; };
+		041FF11F2875340A005722DE /* xDefaultListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xDefaultListCollectionViewController.swift; sourceTree = "<group>"; };
 		042FA008824DC7FB5F1CB794752BF54B /* MJRefreshNormalHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshNormalHeader.m; path = MJRefresh/Custom/Header/MJRefreshNormalHeader.m; sourceTree = "<group>"; };
 		065E8A4C6A6C863748D7538FF2E8B580 /* xListViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "xListViewController-umbrella.h"; sourceTree = "<group>"; };
 		094E099DAAEDF51C096BA11A0927C4A1 /* xCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = xCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -769,6 +773,7 @@
 			children = (
 				5C16B0BBBD051FA52E43E52B5E6A3FED /* xCollectionViewController.swift */,
 				4EDB19DC607141C7065590EBFB940C99 /* xFilterListCollectionViewController.swift */,
+				041FF11F2875340A005722DE /* xDefaultListCollectionViewController.swift */,
 				774174064F43C9E73A40A248195F5C3D /* xListCollectionViewController.swift */,
 				7054084C6F5678520D59A989AF390802 /* Cells */,
 			);
@@ -836,9 +841,10 @@
 		D6BDE65935EA1A4EDFEB53A7D01D9176 /* Table */ = {
 			isa = PBXGroup;
 			children = (
+				BB1D977432ED17653DDAB73895F4E5F3 /* xTableViewController.swift */,
 				D7ADA52E3CAD730C1D6B3A3BB8077333 /* xFilterListTableViewController.swift */,
 				2A68A89C777B74F515E6F0400112E0E8 /* xListTableViewController.swift */,
-				BB1D977432ED17653DDAB73895F4E5F3 /* xTableViewController.swift */,
+				041FF11D28752F71005722DE /* xDefaultListTableViewController.swift */,
 				7E9F6DDD70D551C7AFD97B53F2356972 /* Cells */,
 			);
 			name = Table;
@@ -1279,7 +1285,9 @@
 				C5A13E927F58F6BC43E54DEAF231E30E /* xListNoDataView.swift in Sources */,
 				17D88E5F06B41ED2E7DF43F4801DB456 /* xListNoDataView.xib in Sources */,
 				7175547652E4AFF1248252D835CD198A /* xListTableViewController.swift in Sources */,
+				041FF1202875340A005722DE /* xDefaultListCollectionViewController.swift in Sources */,
 				66DB418758E5F17899139AEA1AA6397F /* xListViewController-dummy.m in Sources */,
+				041FF11E28752F71005722DE /* xDefaultListTableViewController.swift in Sources */,
 				4ED836AF1BDB6C41600EF9E45022DBC0 /* xTableViewCell.swift in Sources */,
 				6BDA7464DF00707419D41A686E80E535 /* xTableViewController.swift in Sources */,
 			);

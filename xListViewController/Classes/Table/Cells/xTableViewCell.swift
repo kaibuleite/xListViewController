@@ -10,12 +10,12 @@ import xModel
 
 open class xTableViewCell: UITableViewCell {
     
-    // MARK: - Open Override Func
+    // MARK: - Override Func
     open override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    // MARK: - Open Func
+    // MARK: - 设置内容数据
     /// 设置内容数据
     open func setContentData(in tvc : xTableViewController? = nil,
                              at idp : IndexPath,
@@ -40,12 +40,24 @@ open class xTableViewCell: UITableViewCell {
         }*/
     }
     
+    // MARK: - 内容高度
     /// 内容高度
     open class func contentHeight() -> CGFloat
     {
         var h = CGFloat.zero
         h += 45
         return h
+    }
+    
+    // MARK: - 注册数据
+    /// 注册数据
+    open class func register(in tvc : UITableViewController,
+                             identifier idf : String)
+    {
+        let bundle = Bundle.init(for: self.classForCoder())
+        let name = self.xClassInfoStruct.name
+        let nib = UINib.init(nibName: name, bundle: bundle)
+        tvc.tableView.register(nib, forCellReuseIdentifier: idf)
     }
     
 }

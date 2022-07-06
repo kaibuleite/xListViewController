@@ -10,12 +10,12 @@ import xModel
 
 open class xCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - Open Override Func
+    // MARK: - Override Func
     open override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    // MARK: - Open Func
+    // MARK: - 设置内容数据
     /// 设置内容数据
     open func setContentData(in cvc : xCollectionViewController? = nil,
                              at idp : IndexPath,
@@ -40,11 +40,24 @@ open class xCollectionViewCell: UICollectionViewCell {
         }*/
     } 
     
-    /// 内容高度
+    // MARK: - 内容大小
+    /// 内容大小
     open class func contentSize() -> CGSize
     {
         var size = CGSize.zero
         size.height += 45
         return size
     }
+    
+    // MARK: - 注册数据
+    /// 注册数据
+    open class func register(in cvc : UICollectionViewController,
+                             identifier idf : String)
+    {
+        let bundle = Bundle.init(for: self.classForCoder())
+        let name = self.xClassInfoStruct.name
+        let nib = UINib.init(nibName: name, bundle: bundle)
+        cvc.collectionView.register(nib, forCellWithReuseIdentifier: idf)
+    }
+    
 }
