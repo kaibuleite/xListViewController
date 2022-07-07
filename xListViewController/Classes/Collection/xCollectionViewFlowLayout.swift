@@ -11,7 +11,8 @@ open class xCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     // MARK: - Override Func
     open override func prepare() {
-        
+        super.prepare()
+        /* 用reset方法设置
         self.minimumLineSpacing = 0
         self.minimumInteritemSpacing = 0
         
@@ -20,6 +21,7 @@ open class xCollectionViewFlowLayout: UICollectionViewFlowLayout {
         self.headerReferenceSize = .zero
         self.footerReferenceSize = .zero
         self.itemSize = .init(width: 100, height: 100)
+         */
     }
 }
 
