@@ -12,16 +12,21 @@ import xModel
 open class xListTableViewController: xTableViewController {
     
     // MARK: - Public Property
+    /// 是否添加刷新控件
+    open var isAddRefresh : Bool { return true }
+    /// 是否自动刷新
+    open var isAutoRefresh : Bool { return true }
+    /// mj_header主题色
+    open var mjHeaderTintColor : UIColor { return .black }
+    /// mj_footer主题色
+    open var mjFooterTintColor : UIColor { return .black }
+    
     /// 分页数据
     public let page = xPage()
     /// 数据源
     public var dataArray = [xModel]()
     /// 空数据展示图
     public var dataEmptyView : UIView?
-    /// 是否添加刷新控件
-    open var isAddRefresh : Bool { return true }
-    /// 是否自动刷新
-    open var isAutoRefresh : Bool { return true }
     
     // MARK: - Open Override Func
     open override func viewDidLoad() {
@@ -105,6 +110,10 @@ extension xListTableViewController {
     {
         let header = MJRefreshNormalHeader.init(refreshingTarget: self,
                                                 refreshingAction: #selector(refreshHeader))
+        for v in header.subviews {
+            if let obj = v as? UILabel { obj.textColor = self.mjHeaderTintColor }
+            if let obj = v as? UIImageView { obj.tintColor = self.mjHeaderTintColor }
+        }
         self.tableView.mj_header = header
     }
     /// 添加尾部刷新
@@ -112,6 +121,10 @@ extension xListTableViewController {
     {
         let footer = MJRefreshBackNormalFooter.init(refreshingTarget: self,
                                                     refreshingAction: #selector(refreshFooter))
+        for v in footer.subviews {
+            if let obj = v as? UILabel { obj.textColor = self.mjFooterTintColor }
+            if let obj = v as? UIImageView { obj.tintColor = self.mjFooterTintColor }
+        }
         self.tableView.mj_footer = footer
     }
     /// 刷新数据

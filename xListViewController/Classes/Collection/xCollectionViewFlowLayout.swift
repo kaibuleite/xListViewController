@@ -32,7 +32,7 @@ extension xCollectionViewFlowLayout {
     @objc open func reset(scrollDirection : UICollectionView.ScrollDirection = .vertical,
                           minimumLineSpacing : CGFloat = 10,
                           minimumInteritemSpacing : CGFloat = 10,
-                          sectionInset : UIEdgeInsets = .xNewEqual(10),
+                          sectionInset : UIEdgeInsets = .zero,
                           headerSize : CGSize = .zero,
                           footerSize : CGSize = .zero,
                           itemSize : CGSize = .zero)
