@@ -15,6 +15,8 @@ open class xCollectionViewFlowLayout: UICollectionViewFlowLayout {
         self.minimumLineSpacing = 0
         self.minimumInteritemSpacing = 0
         
+        self.sectionInset = .zero
+        
         self.headerReferenceSize = .zero
         self.footerReferenceSize = .zero
         self.itemSize = .init(width: 100, height: 100)
@@ -28,6 +30,7 @@ extension xCollectionViewFlowLayout {
     @objc open func reset(scrollDirection : UICollectionView.ScrollDirection,
                           minimumLineSpacing : CGFloat = 0,
                           minimumInteritemSpacing : CGFloat = 0,
+                          sectionInset : UIEdgeInsets = .zero,
                           headerSize : CGSize = .zero,
                           footerSize : CGSize = .zero,
                           itemSize : CGSize = .zero)
@@ -36,6 +39,8 @@ extension xCollectionViewFlowLayout {
         
         self.minimumLineSpacing = minimumLineSpacing
         self.minimumInteritemSpacing = minimumInteritemSpacing
+        
+        self.sectionInset = sectionInset
         
         self.headerReferenceSize = headerSize
         self.footerReferenceSize = footerSize
