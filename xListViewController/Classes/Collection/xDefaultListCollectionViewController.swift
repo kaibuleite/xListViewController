@@ -12,8 +12,8 @@ import xModel
 open class xDefaultListCollectionViewController: xListCollectionViewController {
     
     // MARK: - Public Property
-    open var isAddRefresh : Bool = true
-    open var isAutoRefresh : Bool = true
+    open var isAddRefresh : Bool { return true }
+    open var isAutoRefresh : Bool { return true }
     open var xCellClass : xCollectionViewCell.Type {
         return xCollectionViewCell.self
     }

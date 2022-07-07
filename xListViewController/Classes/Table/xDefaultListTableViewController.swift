@@ -12,8 +12,8 @@ import xModel
 open class xDefaultListTableViewController: xListTableViewController {
     
     // MARK: - Public Property
-    open var isAddRefresh : Bool = true
-    open var isAutoRefresh : Bool = true
+    open var isAddRefresh : Bool { return true }
+    open var isAutoRefresh : Bool { return true }
     open var xCellClass : xTableViewCell.Type {
         return xTableViewCell.self
     }
