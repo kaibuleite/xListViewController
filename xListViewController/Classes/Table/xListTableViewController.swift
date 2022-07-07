@@ -18,6 +18,10 @@ open class xListTableViewController: xTableViewController {
     public var dataArray = [xModel]()
     /// 空数据展示图
     public var dataEmptyView : UIView?
+    /// 是否添加刷新控件
+    open var isAddRefresh : Bool { return true }
+    /// 是否自动刷新
+    open var isAutoRefresh : Bool { return true }
     
     // MARK: - Open Override Func
     open override func viewDidLoad() {
@@ -26,6 +30,11 @@ open class xListTableViewController: xTableViewController {
             // 主线程执行(方便在子类的 viewDidLoad 里设置部分参数)
             self.addMJRefresh()
         }
+    }
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard self.isAutoRefresh else { return }
+        self.refreshHeader()
     }
     
     // MARK: - Public Func
@@ -82,11 +91,15 @@ open class xListTableViewController: xTableViewController {
     }
 }
 
-// MARK: - Extension Objc Open Func
+// MARK: - Extension Func
 extension xListTableViewController {
     
     /// 添加刷新
-    @objc open func addMJRefresh() { }
+    @objc open func addMJRefresh() {
+        guard self.isAddRefresh else { return }
+        self.addHeaderRefresh()
+        self.addFooterRefresh()
+    }
     /// 添加头部刷新
     @objc open func addHeaderRefresh()
     {
@@ -111,11 +124,24 @@ extension xListTableViewController {
     /// 空数据展示图
     @objc open func getEmptyView() -> UIView? {
         var frame = self.tableView.bounds
-        frame.origin.y = self.tableView.sectionHeaderHeight
-        frame.size.height -= self.tableView.sectionHeaderHeight
-        frame.size.height -= self.tableView.sectionFooterHeight
+        let headerH = self.tableView.sectionHeaderHeight
+        frame.origin.y = headerH
+        frame.size.height -= headerH
+        let footerH = self.tableView.sectionFooterHeight
+        frame.size.height -= footerH
+        
         let view = xListNoDataView.loadNib()
         view.frame = frame
         return view
+    }
+}
+
+// MARK: - Table view data source
+extension xListTableViewController {
+    
+    open override func tableView(_ tableView: UITableView,
+                                 numberOfRowsInSection section: Int) -> Int
+    {
+        return self.dataArray.count
     }
 }

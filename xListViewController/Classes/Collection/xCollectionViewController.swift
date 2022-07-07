@@ -42,16 +42,7 @@ open class xCollectionViewController: UICollectionViewController {
     /// 是否打印滚动日志(默认不打印)
     public var isPrintScrollingLog = false
     
-    /// 头部大小
-    public var headerSize = CGSize.zero
-    /// item大小
-    public var itemSize = CGSize.zero
-    /// 空白填充
-    public var sectionEdge = UIEdgeInsets.zero
-    /// 行缩进
-    public var minimumLineSpacing = CGFloat.zero
-    /// 列缩进
-    public var minimumInteritem = CGFloat.zero
+    public var flowLayout : xCollectionViewFlowLayout!
     
     // MARK: - Private Property
     /// 滚动开始回调
@@ -73,11 +64,25 @@ open class xCollectionViewController: UICollectionViewController {
     }
     
     // MARK: - Open Override Func
+    required public override init(collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(collectionViewLayout: layout)
+        guard let xlayout = layout as? xCollectionViewFlowLayout else { return }
+        self.flowLayout = xlayout
+    }
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     open override class func xDefaultViewController() -> Self {
-        let layout = UICollectionViewFlowLayout()
+        let cvc = self.xDefaultViewController(direction: .vertical)
+        return cvc
+    }
+    open class func xDefaultViewController(direction : UICollectionView.ScrollDirection) -> Self {
+        let layout = xCollectionViewFlowLayout()
+        layout.scrollDirection = direction
         let cvc = self.init(collectionViewLayout: layout)
         return cvc
     }
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         // 基本配置
@@ -104,12 +109,6 @@ open class xCollectionViewController: UICollectionViewController {
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.isAppear = false
-    }
-    required public override init(collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(collectionViewLayout: layout)
-    }
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
     }
     
     // MARK: - Public Func
@@ -178,13 +177,39 @@ open class xCollectionViewController: UICollectionViewController {
         let itemArr = cv.indexPathsForVisibleItems
         cv.reloadItems(at: itemArr)
     }
+
+}
+
+// MARK: - Extension Func
+extension xCollectionViewController {
     
-    // MARK: - Collection view delegate
-    open override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+    /// 注册Headers
+    @objc open func registerHeaders() { }
+    /// 注册Cells
+    @objc open func registerCells() { }
+    /// 注册Footers
+    @objc open func registerFooters() { }
+    /// 点击Cell
+    @objc open func clickCell(at idp : IndexPath)
+    {
+        // 子类实现具体操作
     }
+}
+
+// MARK: - Collection view delegate
+extension xCollectionViewController {
     
-    // MARK: - Scroll view delegate
+    open override func collectionView(_ collectionView: UICollectionView,
+                                      didSelectItemAt indexPath: IndexPath)
+    {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        self.clickCell(at: indexPath)
+    }
+}
+
+// MARK: - Scroll view delegate
+extension xCollectionViewController {
+    
     /* 开始拖拽 */
     open override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.beginScrollHandler?(scrollView.contentOffset)
@@ -237,32 +262,49 @@ open class xCollectionViewController: UICollectionViewController {
     /* 调整内容插页，配合MJ_Header使用 */
     open override func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
     }
+}
 
-    // MARK: - UICollectionViewDelegateFlowLayout
-    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return self.headerSize
-    }
-    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+/*
+// MARK: - UICollectionViewDelegateFlowLayout
+extension xCollectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    // 间隔
+    open func collectionView(_ collectionView: UICollectionView,
+                             layout collectionViewLayout: UICollectionViewLayout,
+                             minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    {
         return self.minimumLineSpacing
     }
-    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    open func collectionView(_ collectionView: UICollectionView,
+                             layout collectionViewLayout: UICollectionViewLayout,
+                             
+                             minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return self.minimumInteritem
     }
-    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    open func collectionView(_ collectionView: UICollectionView,
+                             layout collectionViewLayout: UICollectionViewLayout,
+                             insetForSectionAt section: Int) -> UIEdgeInsets
+    {
         return self.sectionEdge
     }
-    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    // 尺寸
+    open func collectionView(_ collectionView: UICollectionView,
+                             layout collectionViewLayout: UICollectionViewLayout,
+                             referenceSizeForHeaderInSection section: Int) -> CGSize
+    {
+        return self.headerSize
+    }
+    public func collectionView(_ collectionView: UICollectionView,
+                               layout collectionViewLayout: UICollectionViewLayout,
+                               referenceSizeForFooterInSection section: Int) -> CGSize
+    {
+        return self.footSize
+    }
+    open func collectionView(_ collectionView: UICollectionView,
+                             layout collectionViewLayout: UICollectionViewLayout,
+                             sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
         return self.itemSize
     }
 }
-
-// MARK: - Extension Func
-extension xCollectionViewController {
-    
-    /// 注册Headers
-    @objc open func registerHeaders() { }
-    /// 注册Cells
-    @objc open func registerCells() { }
-    /// 注册Footers
-    @objc open func registerFooters() { }
-}
+ */

@@ -171,19 +171,49 @@ open class xTableViewController: UITableViewController {
         guard let idpArr = self.tableView.indexPathsForVisibleRows else { return }
         self.tableView.reloadRows(at: idpArr, with: .none)
     }
-    
-    // MARK: - Table view delegate
-    open override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.01
-    }
-    open override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
-    }
-    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
 
-    // MARK: - Scroll view delegate
+}
+
+// MARK: - Extension Func
+extension xTableViewController {
+    
+    /// 注册Headers
+    @objc open func registerHeaders() { }
+    /// 注册Cells
+    @objc open func registerCells() { }
+    /// 注册Footers
+    @objc open func registerFooters() { }
+    /// 点击Cell
+    @objc open func clickCell(at idp : IndexPath)
+    {
+        // 子类实现具体操作
+    }
+}
+
+// MARK: - Table view delegate
+extension xTableViewController {
+    
+    open override func tableView(_ tableView: UITableView,
+                                 heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 0.01
+    }
+    open override func tableView(_ tableView: UITableView,
+                                 heightForFooterInSection section: Int) -> CGFloat
+    {
+        return 0.01
+    }
+    open override func tableView(_ tableView: UITableView,
+                                 didSelectRowAt indexPath: IndexPath)
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.clickCell(at: indexPath)
+    }
+}
+
+// MARK: - Scroll view delegate
+extension xTableViewController {
+    
     /* 开始拖拽 */
     open override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.beginScrollHandler?(scrollView.contentOffset)
@@ -238,15 +268,4 @@ open class xTableViewController: UITableViewController {
     /* 调整内容插页，配合MJ_Header使用 */
     open override func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
     }
-}
-
-// MARK: - Extension Func
-extension xTableViewController {
-    
-    /// 注册Headers
-    @objc open func registerHeaders() { }
-    /// 注册Cells
-    @objc open func registerCells() { }
-    /// 注册Footers
-    @objc open func registerFooters() { }
 }

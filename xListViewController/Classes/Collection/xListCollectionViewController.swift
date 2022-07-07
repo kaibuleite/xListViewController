@@ -18,6 +18,10 @@ open class xListCollectionViewController: xCollectionViewController {
     public var dataArray = [xModel]()
     /// 空数据展示图
     public var dataEmptyView : UIView?
+    /// 是否添加刷新控件
+    open var isAddRefresh : Bool { return true }
+    /// 是否自动刷新
+    open var isAutoRefresh : Bool { return true }
     
     // MARK: - Open Override Func
     open override func viewDidLoad() {
@@ -26,6 +30,11 @@ open class xListCollectionViewController: xCollectionViewController {
             // 主线程执行(方便在子类的 viewDidLoad 里设置部分参数)
             self.addMJRefresh()
         }
+    }
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard self.isAutoRefresh else { return }
+        self.refreshHeader()
     }
     
     // MARK: - Public Func
@@ -83,11 +92,15 @@ open class xListCollectionViewController: xCollectionViewController {
     }
 }
 
-// MARK: - Extension Objc Open Func
+// MARK: - Extension Func
 extension xListCollectionViewController {
     
     /// 添加刷新
-    @objc open func addMJRefresh() { }
+    @objc open func addMJRefresh() {
+        guard self.isAddRefresh else { return }
+        self.addHeaderRefresh()
+        self.addFooterRefresh()
+    }
     /// 添加头部刷新
     @objc open func addHeaderRefresh() {
         let header = MJRefreshNormalHeader.init(refreshingTarget: self,
@@ -109,13 +122,25 @@ extension xListCollectionViewController {
     }
     /// 空数据展示图
     @objc open func getEmptyView() -> UIView? {
+        var frame = self.collectionView.bounds
+        let headerH = self.flowLayout.headerReferenceSize.height
+        frame.origin.y = headerH
+        frame.size.height -= headerH
+        let footerH = self.flowLayout.footerReferenceSize.height
+        frame.size.height -= footerH
+        
         let view = xListNoDataView.loadNib()
-        if let cv = self.collectionView {
-            var frame = cv.bounds
-            frame.origin.y = self.headerSize.height
-            frame.size.height -= self.headerSize.height
-            view.frame = frame
-        }
+        view.frame = frame
         return view
     }
+}
+
+// MARK: - Collection view data source
+extension xListCollectionViewController {
+    
+    open override func collectionView(_ collectionView: UICollectionView,
+                                      numberOfItemsInSection section: Int) -> Int
+    {
+        return self.dataArray.count
+    } 
 }

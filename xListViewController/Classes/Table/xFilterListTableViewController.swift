@@ -34,10 +34,8 @@ open class xFilterListTableViewController: xListTableViewController {
     public func getCurrentDataArray() -> [xModel]
     {
         switch self.dataType {
-        case .normal:
-            return self.dataArray
-        case .filter:
-            return self.filterDataArray
+        case .normal:   return self.dataArray
+        case .filter:   return self.filterDataArray
         }
     }
     
@@ -45,27 +43,34 @@ open class xFilterListTableViewController: xListTableViewController {
     public func getCurrentSideSectionTitleArray() -> [String]
     {
         switch self.dataType {
-        case .normal:
-            return self.sideSectionTitleArray
-        case .filter:
-            return .init()
+        case .normal:   return self.sideSectionTitleArray
+        case .filter:   return .init()
         }
     }
 }
 
+// MARK: - Extension Func
 extension xFilterListTableViewController {
     
     /// 筛选数据源
     @objc open func filterDataArray(withKeyword str : String?)
     {
-        defer {
-            self.tableView.reloadData()
-        }
+        defer { self.tableView.reloadData() }
         let keyword = str ?? ""
         self.dataType = .normal
         guard keyword.count > 0 else { return }
         self.dataType = .filter
         self.filterDataArray.removeAll()
         // 筛选数据 。。。
+    }
+}
+
+// MARK: - Table view data source
+extension xFilterListTableViewController {
+    
+    open override func tableView(_ tableView: UITableView,
+                                 numberOfRowsInSection section: Int) -> Int
+    {
+        return self.getCurrentDataArray().count
     }
 }

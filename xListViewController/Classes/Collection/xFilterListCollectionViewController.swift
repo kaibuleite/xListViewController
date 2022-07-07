@@ -30,14 +30,13 @@ open class xFilterListCollectionViewController: xListCollectionViewController {
     public func getCurrentDataArray() -> [xModel]
     {
         switch self.dataType {
-        case .normal:
-            return self.dataArray
-        case .filter:
-            return self.filterDataArray
+        case .normal:   return self.dataArray
+        case .filter:   return self.filterDataArray
         }
     }
 }
 
+// MARK: - Extension Func
 extension xFilterListCollectionViewController {
     
     /// 筛选数据源
@@ -52,5 +51,15 @@ extension xFilterListCollectionViewController {
         self.dataType = .filter
         self.filterDataArray.removeAll()
         // 筛选数据 。。。
+    }
+}
+
+// MARK: - Collection view data source
+extension xFilterListCollectionViewController {
+    
+    open override func collectionView(_ collectionView: UICollectionView,
+                                      numberOfItemsInSection section: Int) -> Int
+    {
+        return self.getCurrentDataArray().count
     }
 }

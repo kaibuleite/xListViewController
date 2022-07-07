@@ -12,8 +12,6 @@ import xModel
 open class xDefaultListCollectionViewController: xListCollectionViewController {
     
     // MARK: - Public Property
-    open var isAddRefresh : Bool { return true }
-    open var isAutoRefresh : Bool { return true }
     open var xCellClass : xCollectionViewCell.Type {
         return xCollectionViewCell.self
     }
@@ -25,35 +23,7 @@ open class xDefaultListCollectionViewController: xListCollectionViewController {
         self.view.backgroundColor = .clear
         self.collectionView.backgroundColor = .clear
     }
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        guard self.isAutoRefresh else { return }
-        self.refreshHeader()
-    }
     
-    // TODO: - 点击Cell
-    /// 点击Cell
-    open func clickCell(at idp : IndexPath)
-    {
-        // 子类实现具体操作
-    }
-
-}
-
-// MARK: - 数据刷新
-extension xDefaultListCollectionViewController {
-    
-    open override func addMJRefresh() {
-        guard self.isAddRefresh else { return }
-        self.addHeaderRefresh()
-        self.addFooterRefresh()
-    }
-    open override func refreshDataList() {
-        // 模拟数据
-        let list = xModel.newRandomList()
-        self.reloadData(list: list)
-        self.refreshSuccess()
-    }
 }
 
 // MARK: - Cell数据
@@ -81,24 +51,8 @@ extension xDefaultListCollectionViewController {
 extension xDefaultListCollectionViewController {
     
     open override func collectionView(_ collectionView: UICollectionView,
-                                      numberOfItemsInSection section: Int) -> Int
-    {
-        return self.dataArray.count
-    }
-    open override func collectionView(_ collectionView: UICollectionView,
                                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         return self.defaultCell(at: indexPath)
     }
-}
-
-// MARK: - Collection view delegate
-extension xDefaultListCollectionViewController {
-    
-    open override func collectionView(_ collectionView: UICollectionView,
-                                      didSelectItemAt indexPath: IndexPath)
-    {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        self.clickCell(at: indexPath)
-    }
-}
+} 
