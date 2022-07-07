@@ -29,10 +29,10 @@ open class xCollectionViewFlowLayout: UICollectionViewFlowLayout {
 extension xCollectionViewFlowLayout {
     
     /// 更新Layout配置
-    @objc open func reset(scrollDirection : UICollectionView.ScrollDirection,
-                          minimumLineSpacing : CGFloat = 0,
-                          minimumInteritemSpacing : CGFloat = 0,
-                          sectionInset : UIEdgeInsets = .zero,
+    @objc open func reset(scrollDirection : UICollectionView.ScrollDirection = .vertical,
+                          minimumLineSpacing : CGFloat = 10,
+                          minimumInteritemSpacing : CGFloat = 10,
+                          sectionInset : UIEdgeInsets = .xNewEqual(10),
                           headerSize : CGSize = .zero,
                           footerSize : CGSize = .zero,
                           itemSize : CGSize = .zero)
@@ -51,6 +51,28 @@ extension xCollectionViewFlowLayout {
         self.collectionView?.reloadData()
     }
     
+}
+
+extension UIEdgeInsets {
+    
+    /// 等值对象
+    public static func xNewEqual(_ value : CGFloat) -> UIEdgeInsets
+    {
+        let ret = UIEdgeInsets.init(top: value, left: value, bottom: value, right: value)
+        return ret
+    }
+    /// 等值对象
+    public static func xNewEqualLR(_ value : CGFloat) -> UIEdgeInsets
+    {
+        let ret = UIEdgeInsets.init(top: 0, left: value, bottom: 0, right: value)
+        return ret
+    }
+    /// 等值对象
+    public static func xNewEqualTB(_ value : CGFloat) -> UIEdgeInsets
+    {
+        let ret = UIEdgeInsets.init(top: value, left: 0, bottom: value, right: 0)
+        return ret
+    }
 }
 
 // MARK: - 瀑布流布局
