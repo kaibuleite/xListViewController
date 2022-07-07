@@ -12,11 +12,10 @@ import xModel
 open class xDefaultListCollectionViewController: xListCollectionViewController {
     
     // MARK: - Public Property
-    open var DefaultCellName : String {
-        return "Cell"
-    }
-    open var DefaultCellIdentifier : String {
-        return "Cell"
+    open var isAddRefresh : Bool = true
+    open var isAutoRefresh : Bool = true
+    open var xCellClass : xCollectionViewCell.Type {
+        return xCollectionViewCell.self
     }
     
     // MARK: - Override Func
@@ -28,6 +27,7 @@ open class xDefaultListCollectionViewController: xListCollectionViewController {
     }
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        guard self.isAutoRefresh else { return }
         self.refreshHeader()
     }
     
@@ -44,6 +44,7 @@ open class xDefaultListCollectionViewController: xListCollectionViewController {
 extension xDefaultListCollectionViewController {
     
     open override func addMJRefresh() {
+        guard self.isAddRefresh else { return }
         self.addHeaderRefresh()
         self.addFooterRefresh()
     }
@@ -61,14 +62,13 @@ extension xDefaultListCollectionViewController {
     // MARK: - 注册Cell
     /// 注册Cell
     open override func registerCells() {
-        let bundle = Bundle.init(for: self.classForCoder)
-        self.register(nibName: DefaultCellName, bundle: bundle, identifier: DefaultCellIdentifier)
+        xCellClass.register(in: self, identifier: "Cell")
     }
     // MARK: - 默认Cell
     /// 默认Cell
     open func defaultCell(at idp : IndexPath) -> UICollectionViewCell
     {
-        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: DefaultCellIdentifier, for: idp) as! xCollectionViewCell
+        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: idp) as! xCollectionViewCell
         // 数据填充
         let model = self.dataArray[idp.row]
         cell.setContentData(in: self, at: idp, with: model)

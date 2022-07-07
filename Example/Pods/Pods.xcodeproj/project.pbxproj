@@ -772,9 +772,9 @@
 			isa = PBXGroup;
 			children = (
 				5C16B0BBBD051FA52E43E52B5E6A3FED /* xCollectionViewController.swift */,
+				774174064F43C9E73A40A248195F5C3D /* xListCollectionViewController.swift */,
 				4EDB19DC607141C7065590EBFB940C99 /* xFilterListCollectionViewController.swift */,
 				041FF11F2875340A005722DE /* xDefaultListCollectionViewController.swift */,
-				774174064F43C9E73A40A248195F5C3D /* xListCollectionViewController.swift */,
 				7054084C6F5678520D59A989AF390802 /* Cells */,
 			);
 			name = Collection;
@@ -842,8 +842,8 @@
 			isa = PBXGroup;
 			children = (
 				BB1D977432ED17653DDAB73895F4E5F3 /* xTableViewController.swift */,
-				D7ADA52E3CAD730C1D6B3A3BB8077333 /* xFilterListTableViewController.swift */,
 				2A68A89C777B74F515E6F0400112E0E8 /* xListTableViewController.swift */,
+				D7ADA52E3CAD730C1D6B3A3BB8077333 /* xFilterListTableViewController.swift */,
 				041FF11D28752F71005722DE /* xDefaultListTableViewController.swift */,
 				7E9F6DDD70D551C7AFD97B53F2356972 /* Cells */,
 			);

@@ -12,19 +12,13 @@ import xModel
 open class xDefaultListTableViewController: xListTableViewController {
     
     // MARK: - Public Property
-    open var DefaultCellName : String {
-        return "Cell"
-    }
-    open var DefaultCellIdentifier : String {
-        return "Cell"
-    }
-    
-    // MARK: - Override Func
-    open override class func xDefaultViewController() -> Self {
-        let tvc = Self.init(style: .grouped)
-        return tvc
+    open var isAddRefresh : Bool = true
+    open var isAutoRefresh : Bool = true
+    open var xCellClass : xTableViewCell.Type {
+        return xTableViewCell.self
     }
     
+    // MARK: - Override Func 
     open override func viewDidLoad() {
         super.viewDidLoad()
         // 基本配置
@@ -33,6 +27,7 @@ open class xDefaultListTableViewController: xListTableViewController {
     }
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        guard self.isAutoRefresh else { return }
         self.refreshHeader()
     }
     
@@ -49,6 +44,7 @@ open class xDefaultListTableViewController: xListTableViewController {
 extension xDefaultListTableViewController {
     
     open override func addMJRefresh() {
+        guard self.isAddRefresh else { return }
         self.addHeaderRefresh()
         self.addFooterRefresh()
     }
@@ -66,14 +62,14 @@ extension xDefaultListTableViewController {
     // MARK: - 注册Cell
     /// 注册Cell
     open override func registerCells() {
-        let bundle = Bundle.init(for: self.classForCoder)
-        self.register(nibName: DefaultCellName, bundle: bundle, identifier: DefaultCellIdentifier)
+        xCellClass.register(in: self, identifier: "Cell")
     }
+    
     // MARK: - 默认Cell
     /// 默认Cell
     open func defaultCell(at idp : IndexPath) -> UITableViewCell
     {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: DefaultCellIdentifier, for: idp) as! xTableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: idp) as! xTableViewCell
         // 数据填充
         let model = self.dataArray[idp.row]
         cell.setContentData(in: self, at: idp, with: model)
