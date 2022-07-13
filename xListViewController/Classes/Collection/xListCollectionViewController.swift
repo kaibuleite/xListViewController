@@ -13,7 +13,8 @@ open class xListCollectionViewController: xCollectionViewController {
     
     // MARK: - Public Property
     /// 是否添加刷新控件
-    open var isAddRefresh : Bool { return true }
+    open var isAddHeaderRefresh : Bool { return true }
+    open var isAddFooterRefresh : Bool { return true }
     /// 是否自动刷新
     open var isAutoRefresh : Bool { return true }
     /// mj_header主题色
@@ -102,9 +103,8 @@ extension xListCollectionViewController {
     
     /// 添加刷新
     @objc open func addMJRefresh() {
-        guard self.isAddRefresh else { return }
-        self.addHeaderRefresh()
-        self.addFooterRefresh()
+        if self.isAddHeaderRefresh { self.addHeaderRefresh() }
+        if self.isAddFooterRefresh { self.addFooterRefresh() }
     }
     /// 添加头部刷新
     @objc open func addHeaderRefresh() {

@@ -37,7 +37,7 @@ extension xDefaultListTableViewController {
     
     // MARK: - 默认Cell
     /// 默认Cell
-    open func defaultCell(at idp : IndexPath) -> UITableViewCell
+    @objc open func defaultCell(at idp : IndexPath) -> UITableViewCell
     {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: idp) as! xTableViewCell
         // 数据填充

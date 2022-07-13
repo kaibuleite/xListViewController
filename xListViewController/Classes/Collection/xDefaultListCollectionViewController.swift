@@ -36,7 +36,7 @@ extension xDefaultListCollectionViewController {
     }
     // MARK: - 默认Cell
     /// 默认Cell
-    open func defaultCell(at idp : IndexPath) -> UICollectionViewCell
+    @objc open func defaultCell(at idp : IndexPath) -> UICollectionViewCell
     {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: idp) as! xCollectionViewCell
         // 数据填充
