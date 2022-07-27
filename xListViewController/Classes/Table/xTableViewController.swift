@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import xDefine
 import xExtension
 
 open class xTableViewController: UITableViewController {
@@ -61,6 +62,13 @@ open class xTableViewController: UITableViewController {
     }
     
     // MARK: - Open Override Func
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    required public override init(style: UITableView.Style) {
+        super.init(style: style)
+    }
+    
     open override class func xDefaultViewController() -> Self {
         let tvc = self.init(style: .grouped)
         return tvc
@@ -72,16 +80,19 @@ open class xTableViewController: UITableViewController {
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.showsHorizontalScrollIndicator = false
         self.tableView.keyboardDismissMode = .onDrag
-        // 默认自动计算长度
+        // 内容高度
         self.tableView.estimatedRowHeight = 0
         self.tableView.estimatedSectionHeaderHeight = 0
         self.tableView.estimatedSectionFooterHeight = 0
         // self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.rowHeight = 44
-        
+        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
+        self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
+        // 注册控件
         self.registerHeaders()
         self.registerCells()
         self.registerFooters()
+        // 主线程操作
         DispatchQueue.main.async {
             self.addKit()
             self.addChildren()
@@ -95,12 +106,6 @@ open class xTableViewController: UITableViewController {
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.isAppear = false
-    }
-    required public override init(style: UITableView.Style) {
-        super.init(style: style)
-    }
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
     }
     
     // MARK: - Public Func

@@ -62,8 +62,7 @@ open class xListTableViewController: xTableViewController {
         self.tableView.mj_header?.endRefreshing()
         if self.page.isMore {
             self.tableView.mj_footer?.endRefreshing()
-        }
-        else {
+        } else {
             self.tableView.mj_footer?.endRefreshingWithNoMoreData()
         }
     }
@@ -79,8 +78,7 @@ open class xListTableViewController: xTableViewController {
     {
         if self.page.current <= 1 {
             self.dataArray = list
-        }
-        else {
+        } else {
             self.dataArray.append(contentsOf: list)
         }
         self.tableView.reloadData()

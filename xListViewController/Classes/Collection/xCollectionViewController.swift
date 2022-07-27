@@ -64,14 +64,15 @@ open class xCollectionViewController: UICollectionViewController {
     }
     
     // MARK: - Open Override Func
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     required public override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
         guard let xlayout = layout as? xCollectionViewFlowLayout else { return }
         self.flowLayout = xlayout
     }
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+    
     open override class func xDefaultViewController() -> Self {
         let cvc = self.xDefaultViewController(direction: .vertical)
         return cvc
@@ -87,15 +88,14 @@ open class xCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         // 基本配置
         self.view.backgroundColor = UIColor.groupTableViewBackground
-        if let cv = self.collectionView {
-            cv.showsVerticalScrollIndicator = false
-            cv.showsHorizontalScrollIndicator = false
-            cv.keyboardDismissMode = .onDrag
-        }
-        
+        self.collectionView.showsVerticalScrollIndicator = false
+        self.collectionView.showsHorizontalScrollIndicator = false
+        self.collectionView.keyboardDismissMode = .onDrag
+        // 注册控件
         self.registerHeaders()
         self.registerCells()
         self.registerFooters()
+        // 主线程操作
         DispatchQueue.main.async {
             self.addKit()
             self.addChildren()
