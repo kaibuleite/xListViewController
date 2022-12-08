@@ -141,7 +141,10 @@ extension xListCollectionViewController {
         frame.size.height -= headerH
         let footerH = self.flowLayout.footerReferenceSize.height
         frame.size.height -= footerH
-        
+        // 保证最小高度
+        if frame.size.height < frame.width {
+            frame.size.height = frame.width
+        }
         let view = xListNoDataView.loadNib()
         view.frame = frame
         return view
