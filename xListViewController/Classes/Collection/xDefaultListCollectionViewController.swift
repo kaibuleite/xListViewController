@@ -22,6 +22,8 @@ open class xDefaultListCollectionViewController: xListCollectionViewController {
         // 基本配置
         self.view.backgroundColor = .clear
         self.collectionView.backgroundColor = .clear
+        let size = self.xCellClass.contentSize()
+        self.flowLayout.reset(item: size)
     }
     
 }

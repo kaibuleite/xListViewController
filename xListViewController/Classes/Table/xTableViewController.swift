@@ -23,14 +23,11 @@ open class xTableViewController: UITableViewController {
     /// 是否显示中
     public var isAppear = false
     /// 是否完成数据加载
-    public var isLoadRequestDataCompleted = true
-    /// 是否是父控制器
-    public var isRootParentViewController = false
+    public var isRequestDataCompleted = true
     /// 是否关闭顶部下拉回弹
     public var isCloseTopBounces = false
     /// 是否关闭底部上拉回弹
     public var isCloseBottomBounces = false
-    
     /// 是否开启重新刷新滚动结束后显示的Cell功能
     public var isOpenReloadDragScrollingEndVisibleCells = false
     /// 是否还在拖拽滚动事件中
@@ -55,10 +52,10 @@ open class xTableViewController: UITableViewController {
         self.beginScrollHandler = nil
         self.scrollingHandler = nil
         self.endScrollHandler = nil
-        if self.isRootParentViewController {
-            print("****************************")
-        }
-        print("🍂 \(self.xClassInfoStruct.name)")
+        let info = self.xClassInfoStruct
+        let space = info.space
+        let name = info.name
+        print("🧬【\(space).\(name)】")
     }
     
     // MARK: - Open Override Func
@@ -70,7 +67,11 @@ open class xTableViewController: UITableViewController {
     }
     
     open override class func xDefaultViewController() -> Self {
-        let tvc = self.init(style: .grouped)
+        let tvc = self.xDefaultViewController(style: .plain)
+        return tvc
+    }
+    open class func xDefaultViewController(style: UITableView.Style) -> Self {
+        let tvc = self.init(style: style)
         return tvc
     }
     open override func viewDidLoad() {

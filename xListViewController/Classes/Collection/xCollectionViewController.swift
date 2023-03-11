@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import xDefine
 import xExtension
 
 open class xCollectionViewController: UICollectionViewController {
@@ -22,26 +23,22 @@ open class xCollectionViewController: UICollectionViewController {
     /// 是否显示中
     public var isAppear = false
     /// 是否完成数据加载
-    public var isLoadRequestDataCompleted = true
-    /// 是否是父控制器
-    public var isRootParentViewController = false
+    public var isRequestDataCompleted = true
     /// 是否关闭顶部下拉回弹
     public var isCloseTopBounces = false
     /// 是否关闭底部上拉回弹
     public var isCloseBottomBounces = false
-    
     /// 是否开启重新刷新滚动结束后显示的Cell功能
     public var isOpenReloadDragScrollingEndVisibleCells = false
     /// 是否还在拖拽滚动事件中
     public var isDragScrolling : Bool {
-        guard let cv = self.collectionView else { return false }
-        if cv.isDragging { return true }
-        if cv.isDecelerating { return true }
+        if self.collectionView.isDragging { return true }
+        if self.collectionView.isDragging { return true }
         return false
     }
     /// 是否打印滚动日志(默认不打印)
     public var isPrintScrollingLog = false
-    
+    /// 样式
     public var flowLayout : xCollectionViewFlowLayout!
     
     // MARK: - Private Property
@@ -57,10 +54,10 @@ open class xCollectionViewController: UICollectionViewController {
         self.beginScrollHandler = nil
         self.scrollingHandler = nil
         self.endScrollHandler = nil
-        if self.isRootParentViewController {
-            print("****************************")
-        }
-        print("🥀 \(self.xClassInfoStruct.name)")
+        let info = self.xClassInfoStruct
+        let space = info.space
+        let name = info.name
+        print("🦠【\(space).\(name)】")
     }
     
     // MARK: - Open Override Func
@@ -79,7 +76,11 @@ open class xCollectionViewController: UICollectionViewController {
     }
     open class func xDefaultViewController(direction : UICollectionView.ScrollDirection) -> Self {
         let layout = xCollectionViewFlowLayout()
-        layout.scrollDirection = direction
+        layout.reset(scroll: direction)
+        layout.reset(minimumLine: 10, minimumInteritem: 10)
+        layout.reset(header: .zero)
+        layout.reset(footer: .zero)
+        layout.reset(section: .zero)
         let cvc = self.init(collectionViewLayout: layout)
         return cvc
     }

@@ -29,25 +29,36 @@ open class xCollectionViewFlowLayout: UICollectionViewFlowLayout {
 extension xCollectionViewFlowLayout {
     
     /// 更新Layout配置
-    @objc open func reset(scrollDirection : UICollectionView.ScrollDirection = .vertical,
-                          minimumLineSpacing : CGFloat = 10,
-                          minimumInteritemSpacing : CGFloat = 10,
-                          sectionInset : UIEdgeInsets = .zero,
-                          headerSize : CGSize = .zero,
-                          footerSize : CGSize = .zero,
-                          itemSize : CGSize = .zero)
+    @objc open func reset(scroll direction : UICollectionView.ScrollDirection)
     {
-        self.scrollDirection = scrollDirection
-        
-        self.minimumLineSpacing = minimumLineSpacing
-        self.minimumInteritemSpacing = minimumInteritemSpacing
-        
-        self.sectionInset = sectionInset
-        
-        self.headerReferenceSize = headerSize
-        self.footerReferenceSize = footerSize
-        self.itemSize = itemSize
-        
+        self.scrollDirection = direction
+        self.collectionView?.reloadData()
+    }
+    @objc open func reset(minimumLine spacing1 : CGFloat,
+                          minimumInteritem spacing2 : CGFloat)
+    {
+        self.minimumLineSpacing = spacing1
+        self.minimumInteritemSpacing = spacing2
+        self.collectionView?.reloadData()
+    }
+    @objc open func reset(section inset : UIEdgeInsets)
+    {
+        self.sectionInset = inset
+        self.collectionView?.reloadData()
+    }
+    @objc open func reset(header size : CGSize)
+    {
+        self.headerReferenceSize = size
+        self.collectionView?.reloadData()
+    }
+    @objc open func reset(footer size : CGSize)
+    {
+        self.footerReferenceSize = size
+        self.collectionView?.reloadData()
+    }
+    @objc open func reset(item size : CGSize)
+    {
+        self.itemSize = size
         self.collectionView?.reloadData()
     }
     

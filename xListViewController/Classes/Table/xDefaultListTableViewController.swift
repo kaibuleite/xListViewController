@@ -22,6 +22,8 @@ open class xDefaultListTableViewController: xListTableViewController {
         // 基本配置
         self.view.backgroundColor = .clear
         self.tableView.backgroundColor = .clear
+        let height = self.xCellClass.contentHeight()
+        self.tableView.rowHeight = height
     }
     
 }

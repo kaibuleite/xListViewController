@@ -45,7 +45,8 @@ open class xCollectionViewCell: UICollectionViewCell {
     open class func contentSize() -> CGSize
     {
         var size = CGSize.zero
-        size.height += 45
+        size.width += 100
+        size.height += 100
         return size
     }
     
