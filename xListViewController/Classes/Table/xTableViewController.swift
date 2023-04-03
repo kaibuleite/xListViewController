@@ -85,6 +85,11 @@ open class xTableViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 0
         self.tableView.estimatedSectionHeaderHeight = 0
         self.tableView.estimatedSectionFooterHeight = 0
+        if #available(iOS 15.0, *) {
+            self.tableView.sectionHeaderTopPadding = 0
+        } else {
+            // Fallback on earlier versions
+        }
         // self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.rowHeight = 44
         self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
