@@ -482,10 +482,10 @@
 			isa = PBXGroup;
 			children = (
 				F1FFA2BBEDEBC43DB080F76327FF2A7A /* xCollectionViewController.swift */,
+				B8684AE014E93134384EB74CEE16BDC2 /* xListCollectionViewController.swift */,
 				55480F5030F186575F4336502A25515B /* xCollectionViewFlowLayout.swift */,
 				9FB38AABFA4A944BC5BE1B5E8C8908D9 /* xDefaultListCollectionViewController.swift */,
 				9C8F213904470880E4B5A64FBA3A176E /* xFilterListCollectionViewController.swift */,
-				B8684AE014E93134384EB74CEE16BDC2 /* xListCollectionViewController.swift */,
 				9BE8F6178EBDF6FB3B4D3B5E40466ABF /* Cells */,
 			);
 			name = Collection;

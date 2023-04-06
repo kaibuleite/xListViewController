@@ -27,7 +27,9 @@ open class xListCollectionViewController: xCollectionViewController {
     /// 数据源
     public var dataArray = [xModel]()
     /// 空数据展示图
-    public var dataEmptyView : UIView?
+    public lazy var dataEmptyView : UIView = {
+        return self.getEmptyView()
+    }()
     
     // MARK: - Open Override Func
     open override func viewDidLoad() {
@@ -43,7 +45,7 @@ open class xListCollectionViewController: xCollectionViewController {
         self.refreshHeader()
     }
     
-    // MARK: - Public Func
+    // MARK: - 数据刷新
     /// 刷新头部
     @objc public func refreshHeader() {
         self.page.current = 1
@@ -77,30 +79,23 @@ open class xListCollectionViewController: xCollectionViewController {
     /// - Parameter list: 新的数据
     public func reloadData(list : [xModel])
     {
-        guard let cv = self.collectionView else { return }
         if self.page.current <= 1 {
             self.dataArray = list
-        }
-        else {
+        } else {
             self.dataArray.append(contentsOf: list)
         }
-        cv.reloadData()
-        self.reloadDragScrollinEndVisibleCells()
         if self.isPrintScrollingLog {
             print("***** 停止类型4: MJRefresh数据加载完成\n")
         }
-        // 显示空数据提示视图
-        self.dataEmptyView?.removeFromSuperview()
-        guard self.dataArray.count == 0 else { return }
-        guard let emptyView = self.getEmptyView() else { return }
-        self.dataEmptyView = emptyView
-        cv.addSubview(emptyView)
+        self.reloadEmptyFooter()
+        self.reloadDragScrollinEndVisibleCells()
     }
+    
 }
 
-// MARK: - Extension Func
 extension xListCollectionViewController {
     
+    // MARK: - 刷新控件
     /// 添加刷新
     @objc open func addMJRefresh() {
         if self.isAddHeaderRefresh { self.addHeaderRefresh() }
@@ -133,22 +128,62 @@ extension xListCollectionViewController {
         self.refreshSuccess()
         self.reloadData(list: list)
     }
+    
+    // MARK: - 空数据
     /// 空数据展示图
-    @objc open func getEmptyView() -> UIView? {
+    @objc open func getEmptyView() -> UIView {
         var frame = self.collectionView.bounds
-        let headerH = self.flowLayout.headerReferenceSize.height
-        frame.origin.y = headerH
-        frame.size.height -= headerH
-        let footerH = self.flowLayout.footerReferenceSize.height
-        frame.size.height -= footerH
         // 保证最小高度
-        if frame.size.height < frame.width {
-            frame.size.height = frame.width
+        if frame.size.height < 500 {
+            frame.size.height = 500
         }
-        let view = xListNoDataView.loadNib()
+        let view = xListNoDataView.loadXib()
         view.frame = frame
         return view
     }
+    /// 重新加载空数据Footer
+    @objc open func reloadEmptyFooter()
+    {
+        let isEmptyData = (self.dataArray.count == 0)
+        self.dataEmptyView.isHidden = !isEmptyData
+        if isEmptyData {
+            if self.dataEmptyView.superview == nil {
+                self.collectionView.addSubview(self.dataEmptyView)
+            }
+            self.reset(footer: self.dataEmptyView.bounds.size)
+            var frame = self.dataEmptyView.frame
+            frame.origin.y = self.flowLayout.headerReferenceSize.height
+            self.dataEmptyView.frame = frame
+        } else {
+            self.reset(footer: .zero)
+        }
+        self.collectionView.reloadData()
+    }
+    
+    // MARK: - 更新FlowLayout
+    open override func reset(minimumLine spacing1: CGFloat,
+                             minimumInteritem spacing2: CGFloat)
+    {
+        super.reset(minimumLine: spacing1, minimumInteritem: spacing2)
+        self.reloadEmptyFooter()
+    }
+    open override func reset(section inset: UIEdgeInsets) {
+        super.reset(section: inset)
+        self.reloadEmptyFooter()
+    }
+    open override func reset(header size: CGSize) {
+        super.reset(header: size)
+        self.reloadEmptyFooter()
+    }
+    open override func reset(footer size: CGSize) {
+        super.reset(footer: size)
+        self.reloadEmptyFooter()
+    }
+    open override func reset(item size: CGSize) {
+        super.reset(item: size)
+        self.reloadEmptyFooter()
+    }
+    
 }
 
 // MARK: - Collection view data source
@@ -158,5 +193,5 @@ extension xListCollectionViewController {
                                       numberOfItemsInSection section: Int) -> Int
     {
         return self.dataArray.count
-    } 
+    }
 }

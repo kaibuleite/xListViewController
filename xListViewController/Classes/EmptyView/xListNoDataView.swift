@@ -13,12 +13,19 @@ public class xListNoDataView: UIView {
     @IBOutlet public weak var tipIcon: UIImageView!
     @IBOutlet public weak var tipLbl: UILabel!
     
-    // MARK: - Public Func
-    public class func loadNib() -> xListNoDataView {
+    // MARK: - Public Func  
+    class func loadXib() -> Self {
         let bundle = Bundle.init(for: self.classForCoder())
-        let arr = bundle.loadNibNamed("xListNoDataView", owner: nil, options: nil)!
-        let view = arr.first! as! xListNoDataView
-        return view
+        let name = self.xClassInfoStruct.name
+        let arr = bundle.loadNibNamed(name, owner: nil, options: nil)!
+        let view = arr.first!
+        return view as! Self
+    }
+    
+    // MARK: - Override Func
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = .clear
     }
 
 }

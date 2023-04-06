@@ -23,7 +23,7 @@ open class xDefaultListCollectionViewController: xListCollectionViewController {
         self.view.backgroundColor = .clear
         self.collectionView.backgroundColor = .clear
         let size = self.xCellClass.contentSize()
-        self.flowLayout.reset(item: size)
+        self.reset(item: size)
     }
     
 }

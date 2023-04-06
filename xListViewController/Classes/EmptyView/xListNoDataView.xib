@@ -16,13 +16,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="qhN-aG-5bU">
-                    <rect key="frame" x="125.5" y="361" width="163" height="174.5"/>
+                    <rect key="frame" x="147" y="380" width="120" height="136"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_data.png" translatesAutoresizingMaskIntoConstraints="NO" id="YFW-Mv-w1a">
-                            <rect key="frame" x="0.0" y="0.0" width="163" height="140"/>
+                            <rect key="frame" x="0.0" y="0.0" width="120" height="101.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="YFW-Mv-w1a" secondAttribute="height" multiplier="165:140" id="Tf8-UD-4Q3"/>
+                                <constraint firstAttribute="width" constant="120" id="wyl-a3-I5Q"/>
+                            </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="没有数据啦~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrS-Kp-28Q">
-                            <rect key="frame" x="0.0" y="155" width="163" height="19.5"/>
+                            <rect key="frame" x="0.0" y="116.5" width="120" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

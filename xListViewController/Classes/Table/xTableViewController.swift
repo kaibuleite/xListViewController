@@ -114,7 +114,7 @@ open class xTableViewController: UITableViewController {
         self.isAppear = false
     }
     
-    // MARK: - Public Func
+    // MARK: - 注册Cell
     /// 注册NibCell
     /// - Parameters:
     ///   - name: xib名称
@@ -138,49 +138,22 @@ open class xTableViewController: UITableViewController {
         self.tableView.register(cellClass,
                                 forCellReuseIdentifier: identifier)
     }
+    
+    // MARK: - 添加回调
     /// 添加开始滚动回调
-    public func addBeginScrollHandler(_ handler : @escaping xHandlerScrollViewChangeStatus)
+    public func addBeginScrollHandler(_ handler : @escaping xTableViewController.xHandlerScrollViewChangeStatus)
     {
         self.beginScrollHandler = handler
     }
     /// 添加滚动中回调
-    public func addScrollingHandler(_ handler : @escaping xHandlerScrollViewChangeStatus)
+    public func addScrollingHandler(_ handler : @escaping xTableViewController.xHandlerScrollViewChangeStatus)
     {
         self.scrollingHandler = handler
     }
     /// 添加滚动完成回调
-    public func addEndScrollHandler(_ handler : @escaping xHandlerScrollViewChangeStatus)
+    public func addEndScrollHandler(_ handler : @escaping xTableViewController.xHandlerScrollViewChangeStatus)
     {
         self.endScrollHandler = handler
-    }
-    
-    // MARK: - Private Func
-    /// 检测滚动时间是否结束
-    func checkDragScrollingEnd(_ scrollView: UIScrollView) -> Bool
-    {
-        // 拖拽事件
-        if self.isDragScrolling { return false }
-        // 边界回弹
-        if !self.isCloseTopBounces {
-            let ofy1 = scrollView.contentOffset.y
-            let ofy2 = CGFloat(-1)
-            guard ofy1 >= ofy2 else { return false }
-        }
-        if !self.isCloseBottomBounces {
-            let ofy1 = scrollView.contentOffset.y
-            let ofy2 = scrollView.contentSize.height - scrollView.bounds.height + 1
-            guard ofy1 <= ofy2 else { return false }
-        }
-        self.endScrollHandler?(scrollView.contentOffset)
-        self.reloadDragScrollinEndVisibleCells()
-        return true
-    }
-    /// 刷新显示中的Cell
-    func reloadDragScrollinEndVisibleCells()
-    {
-        guard self.isOpenReloadDragScrollingEndVisibleCells else { return }
-        guard let idpArr = self.tableView.indexPathsForVisibleRows else { return }
-        self.tableView.reloadRows(at: idpArr, with: .none)
     }
 
 }
@@ -195,10 +168,7 @@ extension xTableViewController {
     /// 注册Footers
     @objc open func registerFooters() { }
     /// 点击Cell
-    @objc open func clickCell(at idp : IndexPath)
-    {
-        // 子类实现具体操作
-    }
+    @objc open func clickCell(at idp : IndexPath) { }
 }
 
 // MARK: - Table view delegate
@@ -278,5 +248,34 @@ extension xTableViewController {
     }
     /* 调整内容插页，配合MJ_Header使用 */
     open override func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+    }
+    
+    // MARK: - 检测滚动事件是否结束
+    /// 检测滚动事件是否结束
+    func checkDragScrollingEnd(_ scrollView: UIScrollView) -> Bool
+    {
+        // 拖拽事件
+        if self.isDragScrolling { return false }
+        // 边界回弹
+        if !self.isCloseTopBounces {
+            let ofy1 = scrollView.contentOffset.y
+            let ofy2 = CGFloat(-1)
+            guard ofy1 >= ofy2 else { return false }
+        }
+        if !self.isCloseBottomBounces {
+            let ofy1 = scrollView.contentOffset.y
+            let ofy2 = scrollView.contentSize.height - scrollView.bounds.height + 1
+            guard ofy1 <= ofy2 else { return false }
+        }
+        self.endScrollHandler?(scrollView.contentOffset)
+        self.reloadDragScrollinEndVisibleCells()
+        return true
+    }
+    /// 刷新显示中的Cell
+    func reloadDragScrollinEndVisibleCells()
+    {
+        guard self.isOpenReloadDragScrollingEndVisibleCells else { return }
+        guard let idpArr = self.tableView.indexPathsForVisibleRows else { return }
+        self.tableView.reloadRows(at: idpArr, with: .none)
     }
 }

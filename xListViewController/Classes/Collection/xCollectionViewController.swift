@@ -76,12 +76,12 @@ open class xCollectionViewController: UICollectionViewController {
     }
     open class func xDefaultViewController(direction : UICollectionView.ScrollDirection) -> Self {
         let layout = xCollectionViewFlowLayout()
-        layout.reset(scroll: direction)
-        layout.reset(minimumLine: 10, minimumInteritem: 10)
-        layout.reset(header: .zero)
-        layout.reset(footer: .zero)
-        layout.reset(section: .zero)
         let cvc = self.init(collectionViewLayout: layout)
+        cvc.reset(scroll: direction)
+        cvc.reset(minimumLine: 10, minimumInteritem: 10)
+        cvc.reset(header: .zero)
+        cvc.reset(footer: .zero)
+        cvc.reset(section: .zero)
         return cvc
     }
     
@@ -112,7 +112,7 @@ open class xCollectionViewController: UICollectionViewController {
         self.isAppear = false
     }
     
-    // MARK: - Public Func
+    // MARK: - 注册Cell
     /// 注册NibCell
     /// - Parameters:
     ///   - name: xib名称
@@ -133,50 +133,22 @@ open class xCollectionViewController: UICollectionViewController {
     {
         self.collectionView?.register(cellClass, forCellWithReuseIdentifier: identifier)
     }
+    
+    // MARK: - 添加回调
     /// 添加开始滚动回调
-    public func addBeginScrollHandler(_ handler : @escaping xHandlerScrollViewChangeStatus)
+    public func addBeginScrollHandler(_ handler : @escaping xCollectionViewController.xHandlerScrollViewChangeStatus)
     {
         self.beginScrollHandler = handler
     }
     /// 添加滚动中回调
-    public func addScrollingHandler(_ handler : @escaping xHandlerScrollViewChangeStatus)
+    public func addScrollingHandler(_ handler : @escaping xCollectionViewController.xHandlerScrollViewChangeStatus)
     {
         self.scrollingHandler = handler
     }
     /// 添加滚动完成回调
-    public func addEndScrollHandler(_ handler : @escaping xHandlerScrollViewChangeStatus)
+    public func addEndScrollHandler(_ handler : @escaping xCollectionViewController.xHandlerScrollViewChangeStatus)
     {
         self.endScrollHandler = handler
-    }
-    
-    // MARK: - Private Func
-    /// 检测滚动时间是否结束
-    func checkDragScrollingEnd(_ scrollView: UIScrollView) -> Bool
-    {
-        // 拖拽事件
-        if self.isDragScrolling { return false }
-        // 边界回弹
-        if !self.isCloseTopBounces {
-            let ofy1 = scrollView.contentOffset.y
-            let ofy2 = CGFloat(-1)
-            guard ofy1 >= ofy2 else { return false }
-        }
-        if !self.isCloseBottomBounces {
-            let ofy1 = scrollView.contentOffset.y
-            let ofy2 = scrollView.contentSize.height - scrollView.bounds.height + 1
-            guard ofy1 <= ofy2 else { return false }
-        }
-        self.endScrollHandler?(scrollView.contentOffset)
-        self.reloadDragScrollinEndVisibleCells()
-        return true
-    }
-    /// 刷新显示中的Cell
-    func reloadDragScrollinEndVisibleCells()
-    {
-        guard self.isOpenReloadDragScrollingEndVisibleCells else { return }
-        guard let cv = self.collectionView else { return }
-        let itemArr = cv.indexPathsForVisibleItems
-        cv.reloadItems(at: itemArr)
     }
 
 }
@@ -191,10 +163,35 @@ extension xCollectionViewController {
     /// 注册Footers
     @objc open func registerFooters() { }
     /// 点击Cell
-    @objc open func clickCell(at idp : IndexPath)
+    @objc open func clickCell(at idp : IndexPath) { }
+    /// 更新Layout配置
+    @objc open func reset(scroll direction : UICollectionView.ScrollDirection)
     {
-        // 子类实现具体操作
+        self.flowLayout.reset(scroll: direction)
     }
+    @objc open func reset(minimumLine spacing1 : CGFloat,
+                          minimumInteritem spacing2 : CGFloat)
+    {
+        self.flowLayout.reset(minimumLine: spacing1,
+                              minimumInteritem: spacing2)
+    }
+    @objc open func reset(section inset : UIEdgeInsets)
+    {
+        self.flowLayout.reset(section: inset)
+    }
+    @objc open func reset(header size : CGSize)
+    {
+        self.flowLayout.reset(header: size)
+    }
+    @objc open func reset(footer size : CGSize)
+    {
+        self.flowLayout.reset(footer: size)
+    }
+    @objc open func reset(item size : CGSize)
+    {
+        self.flowLayout.reset(item: size)
+    }
+    
 }
 
 // MARK: - Collection view delegate
@@ -262,6 +259,35 @@ extension xCollectionViewController {
     }
     /* 调整内容插页，配合MJ_Header使用 */
     open override func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+    }
+    
+    // MARK: - 检测滚动事件是否结束
+    /// 检测滚动事件是否结束
+    func checkDragScrollingEnd(_ scrollView: UIScrollView) -> Bool
+    {
+        // 拖拽事件
+        if self.isDragScrolling { return false }
+        // 边界回弹
+        if !self.isCloseTopBounces {
+            let ofy1 = scrollView.contentOffset.y
+            let ofy2 = CGFloat(-1)
+            guard ofy1 >= ofy2 else { return false }
+        }
+        if !self.isCloseBottomBounces {
+            let ofy1 = scrollView.contentOffset.y
+            let ofy2 = scrollView.contentSize.height - scrollView.bounds.height + 1
+            guard ofy1 <= ofy2 else { return false }
+        }
+        self.endScrollHandler?(scrollView.contentOffset)
+        self.reloadDragScrollinEndVisibleCells()
+        return true
+    }
+    /// 刷新显示中的Cell
+    func reloadDragScrollinEndVisibleCells()
+    {
+        guard self.isOpenReloadDragScrollingEndVisibleCells else { return }
+        let itemArr = self.collectionView.indexPathsForVisibleItems
+        self.collectionView.reloadItems(at: itemArr)
     }
 }
 

@@ -27,7 +27,9 @@ open class xListTableViewController: xTableViewController {
     /// 数据源
     public var dataArray = [xModel]()
     /// 空数据展示图
-    public var dataEmptyView : UIView?
+    public lazy var dataEmptyView : UIView = {
+        return self.getEmptyView()
+    }()
     
     // MARK: - Open Override Func
     open override func viewDidLoad() {
@@ -43,7 +45,7 @@ open class xListTableViewController: xTableViewController {
         self.refreshHeader()
     }
     
-    // MARK: - Public Func
+    // MARK: - 数据刷新
     /// 刷新头部
     @objc public func refreshHeader()
     {
@@ -81,27 +83,22 @@ open class xListTableViewController: xTableViewController {
         } else {
             self.dataArray.append(contentsOf: list)
         }
-        self.tableView.reloadData()
-        self.reloadDragScrollinEndVisibleCells()
         if self.isPrintScrollingLog {
             print("***** 停止类型4: MJRefresh数据加载完成\n")
         }
-        // 显示空数据提示视图
-        self.dataEmptyView?.removeFromSuperview()
-        guard self.dataArray.count == 0 else { return }
-        guard let emptyView = self.getEmptyView() else { return }
-        self.dataEmptyView = emptyView
-        self.tableView.addSubview(emptyView)
+        self.reloadEmptyFooter()
+        self.reloadDragScrollinEndVisibleCells()
     }
+    
 }
 
-// MARK: - Extension Func
 extension xListTableViewController {
     
+    // MARK: - 刷新控件
     /// 添加刷新
     @objc open func addMJRefresh() {
         if self.isAddHeaderRefresh { self.addHeaderRefresh() }
-        if self.isAddFooterRefresh { self.addFooterRefresh() } 
+        if self.isAddFooterRefresh { self.addFooterRefresh() }
     }
     /// 添加头部刷新
     @objc open func addHeaderRefresh()
@@ -132,21 +129,30 @@ extension xListTableViewController {
         self.refreshSuccess()
         self.reloadData(list: list)
     }
+    
+    // MARK: - 空数据
     /// 空数据展示图
-    @objc open func getEmptyView() -> UIView? {
+    @objc open func getEmptyView() -> UIView {
         var frame = self.tableView.bounds
-        let headerH = self.tableView.sectionHeaderHeight
-        frame.origin.y = headerH
-        frame.size.height -= headerH
-        let footerH = self.tableView.sectionFooterHeight
-        frame.size.height -= footerH
         // 保证最小高度
-        if frame.size.height < frame.width {
-            frame.size.height = frame.width
+        if frame.size.height < 500 {
+            frame.size.height = 500
         }
-        let view = xListNoDataView.loadNib()
+        let view = xListNoDataView.loadXib()
         view.frame = frame
         return view
+    }
+    /// 重新加载空数据Footer
+    @objc open func reloadEmptyFooter()
+    {
+        let isEmptyData = (self.dataArray.count == 0)
+        self.dataEmptyView.isHidden = !isEmptyData
+        if isEmptyData {
+            self.tableView.tableFooterView = self.dataEmptyView
+        } else {
+            self.tableView.tableFooterView = nil
+        }
+        self.tableView.reloadData()
     }
 }
 
