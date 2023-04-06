@@ -50,12 +50,14 @@ open class xListTableViewController: xTableViewController {
     @objc public func refreshHeader()
     {
         self.page.current = 1
+        self.hiddenEmptyView()
         self.refreshDataList()
     }
     /// 刷新尾部
     @objc public func refreshFooter()
     {
         self.page.current += 1
+        self.hiddenEmptyView()
         self.refreshDataList()
     }
     /// 数据刷新成功
@@ -86,7 +88,7 @@ open class xListTableViewController: xTableViewController {
         if self.isPrintScrollingLog {
             print("***** 停止类型4: MJRefresh数据加载完成\n")
         }
-        self.reloadEmptyFooter()
+        self.reloadEmptyView()
         self.reloadDragScrollinEndVisibleCells()
     }
     
@@ -134,26 +136,36 @@ extension xListTableViewController {
     /// 空数据展示图
     @objc open func getEmptyView() -> UIView {
         var frame = self.tableView.bounds
-        // 保证最小高度
-        if frame.size.height < 500 {
-            frame.size.height = 500
-        }
+        frame.size.height = 400
         let view = xListNoDataView.loadXib()
         view.frame = frame
         return view
     }
     /// 重新加载空数据Footer
-    @objc open func reloadEmptyFooter()
+    @objc open func reloadEmptyView()
     {
         let isEmptyData = (self.dataArray.count == 0)
-        self.dataEmptyView.isHidden = !isEmptyData
         if isEmptyData {
-            self.tableView.tableFooterView = self.dataEmptyView
+            self.showEmptyView()
         } else {
-            self.tableView.tableFooterView = nil
+            self.hiddenEmptyView()
         }
+    }
+    /// 显示空数据提示
+    @objc open func showEmptyView()
+    {
+        self.dataEmptyView.isHidden = false
+        self.tableView.tableFooterView = self.dataEmptyView
         self.tableView.reloadData()
     }
+    /// 隐藏空数据提示
+    @objc open func hiddenEmptyView()
+    {
+        self.dataEmptyView.isHidden = true
+        self.tableView.tableFooterView = nil
+        self.tableView.reloadData()
+    }
+    
 }
 
 // MARK: - Table view data source

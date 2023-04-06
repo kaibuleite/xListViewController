@@ -76,12 +76,12 @@ open class xCollectionViewController: UICollectionViewController {
     }
     open class func xDefaultViewController(direction : UICollectionView.ScrollDirection) -> Self {
         let layout = xCollectionViewFlowLayout()
+        layout.reset(scroll: direction)
+        layout.reset(minimumLine: 10, minimumInteritem: 10)
+        layout.reset(header: .zero)
+        layout.reset(footer: .zero)
+        layout.reset(section: .zero)
         let cvc = self.init(collectionViewLayout: layout)
-        cvc.reset(scroll: direction)
-        cvc.reset(minimumLine: 10, minimumInteritem: 10)
-        cvc.reset(header: .zero)
-        cvc.reset(footer: .zero)
-        cvc.reset(section: .zero)
         return cvc
     }
     

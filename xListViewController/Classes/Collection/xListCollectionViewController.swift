@@ -49,11 +49,13 @@ open class xListCollectionViewController: xCollectionViewController {
     /// 刷新头部
     @objc public func refreshHeader() {
         self.page.current = 1
+        self.hiddenEmptyView()
         self.refreshDataList()
     }
     /// 刷新尾部
     @objc public func refreshFooter() {
         self.page.current += 1
+        self.hiddenEmptyView()
         self.refreshDataList()
     }
     /// 数据刷新成功
@@ -87,7 +89,7 @@ open class xListCollectionViewController: xCollectionViewController {
         if self.isPrintScrollingLog {
             print("***** 停止类型4: MJRefresh数据加载完成\n")
         }
-        self.reloadEmptyFooter()
+        self.reloadEmptyView()
         self.reloadDragScrollinEndVisibleCells()
     }
     
@@ -133,55 +135,46 @@ extension xListCollectionViewController {
     /// 空数据展示图
     @objc open func getEmptyView() -> UIView {
         var frame = self.collectionView.bounds
-        // 保证最小高度
-        if frame.size.height < 500 {
-            frame.size.height = 500
-        }
+        frame.size.height = 400
         let view = xListNoDataView.loadXib()
         view.frame = frame
         return view
     }
     /// 重新加载空数据Footer
-    @objc open func reloadEmptyFooter()
+    @objc open func reloadEmptyView()
     {
         let isEmptyData = (self.dataArray.count == 0)
-        self.dataEmptyView.isHidden = !isEmptyData
         if isEmptyData {
-            if self.dataEmptyView.superview == nil {
-                self.collectionView.addSubview(self.dataEmptyView)
-            }
-            self.reset(footer: self.dataEmptyView.bounds.size)
-            var frame = self.dataEmptyView.frame
-            frame.origin.y = self.flowLayout.headerReferenceSize.height
-            self.dataEmptyView.frame = frame
+            self.showEmptyView()
         } else {
-            self.reset(footer: .zero)
+            self.hiddenEmptyView()
         }
-        self.collectionView.reloadData()
+    }
+    /// 显示空数据提示
+    @objc open func showEmptyView()
+    {
+        self.dataEmptyView.isHidden = false
+        self.flowLayout.reset(footer: self.dataEmptyView.bounds.size)
+        // 调整位置
+        if self.dataEmptyView.superview == nil {
+            self.collectionView.addSubview(self.dataEmptyView)
+        }
+        let headerHeight = self.flowLayout.headerReferenceSize.height
+        var frame = self.dataEmptyView.frame
+        frame.origin.y = headerHeight
+        self.dataEmptyView.frame = frame
+    }
+    /// 隐藏空数据提示
+    @objc open func hiddenEmptyView()
+    {
+        self.dataEmptyView.isHidden = true
+        self.flowLayout.reset(footer: .zero)
     }
     
     // MARK: - 更新FlowLayout
-    open override func reset(minimumLine spacing1: CGFloat,
-                             minimumInteritem spacing2: CGFloat)
-    {
-        super.reset(minimumLine: spacing1, minimumInteritem: spacing2)
-        self.reloadEmptyFooter()
-    }
-    open override func reset(section inset: UIEdgeInsets) {
-        super.reset(section: inset)
-        self.reloadEmptyFooter()
-    }
     open override func reset(header size: CGSize) {
         super.reset(header: size)
-        self.reloadEmptyFooter()
-    }
-    open override func reset(footer size: CGSize) {
-        super.reset(footer: size)
-        self.reloadEmptyFooter()
-    }
-    open override func reset(item size: CGSize) {
-        super.reset(item: size)
-        self.reloadEmptyFooter()
+        self.reloadEmptyView()
     }
     
 }
