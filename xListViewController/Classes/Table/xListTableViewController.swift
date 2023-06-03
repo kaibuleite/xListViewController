@@ -24,6 +24,8 @@ open class xListTableViewController: xTableViewController {
     
     /// 分页数据
     public let page = xPage()
+    /// 是否显示空数据提示
+    public var isShowDataEmptyTip = false
     /// 数据源
     public var dataArray = [xModel]()
     /// 空数据展示图
@@ -139,11 +141,13 @@ extension xListTableViewController {
         frame.size.height = 400
         let view = xListNoDataView.loadXib()
         view.frame = frame
+        view.isHidden = true
         return view
     }
     /// 重新加载空数据Footer
     @objc open func reloadEmptyView()
     {
+        guard self.isShowDataEmptyTip else { return }
         let isEmptyData = (self.dataArray.count == 0)
         if isEmptyData {
             self.showEmptyView()

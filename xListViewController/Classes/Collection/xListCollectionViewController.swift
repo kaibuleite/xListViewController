@@ -24,6 +24,8 @@ open class xListCollectionViewController: xCollectionViewController {
     
     /// 分页数据
     public let page = xPage()
+    /// 是否显示空数据提示
+    public var isShowDataEmptyTip = false
     /// 数据源
     public var dataArray = [xModel]()
     /// 空数据展示图
@@ -138,11 +140,13 @@ extension xListCollectionViewController {
         frame.size.height = 400
         let view = xListNoDataView.loadXib()
         view.frame = frame
+        view.isHidden = true
         return view
     }
     /// 重新加载空数据Footer
     @objc open func reloadEmptyView()
     {
+        guard self.isShowDataEmptyTip else { return }
         let isEmptyData = (self.dataArray.count == 0)
         if isEmptyData {
             self.showEmptyView()
@@ -153,8 +157,6 @@ extension xListCollectionViewController {
     /// 显示空数据提示
     @objc open func showEmptyView()
     {
-        self.dataEmptyView.isHidden = false
-        self.flowLayout.reset(footer: self.dataEmptyView.bounds.size)
         // 调整位置
         if self.dataEmptyView.superview == nil {
             self.collectionView.addSubview(self.dataEmptyView)
@@ -163,18 +165,15 @@ extension xListCollectionViewController {
         var frame = self.dataEmptyView.frame
         frame.origin.y = headerHeight
         self.dataEmptyView.frame = frame
+        
+        self.dataEmptyView.isHidden = false
+        self.flowLayout.reset(footer: self.dataEmptyView.bounds.size)
     }
     /// 隐藏空数据提示
     @objc open func hiddenEmptyView()
     {
         self.dataEmptyView.isHidden = true
         self.flowLayout.reset(footer: .zero)
-    }
-    
-    // MARK: - 更新FlowLayout
-    open override func reset(header size: CGSize) {
-        super.reset(header: size)
-        self.reloadEmptyView()
     }
     
 }
