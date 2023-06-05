@@ -63,21 +63,18 @@ open class xListCollectionViewController: xCollectionViewController {
     /// 数据刷新成功
     public func refreshSuccess()
     {
-        guard let cv = self.collectionView else { return }
-        cv.mj_header?.endRefreshing()
+        self.collectionView.mj_header?.endRefreshing()
         if self.page.isMore {
-            cv.mj_footer?.endRefreshing()
-        }
-        else {
-            cv.mj_footer?.endRefreshingWithNoMoreData()
+            self.collectionView.mj_footer?.endRefreshing()
+        } else {
+            self.collectionView.mj_footer?.endRefreshingWithNoMoreData()
         }
     }
     /// 数据刷新失败
     public func refreshFailure()
     {
-        guard let cv = self.collectionView else { return }
-        cv.mj_header?.endRefreshing()
-        cv.mj_footer?.endRefreshing()
+        self.collectionView.mj_header?.endRefreshing()
+        self.collectionView.mj_footer?.endRefreshing()
     }
     /// 拼接数据源
     /// - Parameter list: 新的数据
@@ -129,8 +126,8 @@ extension xListCollectionViewController {
     @objc open func refreshDataList() {
         // 模拟数据
         let list = xModel.newRandomList()
-        self.refreshSuccess()
         self.reloadData(list: list)
+        self.refreshSuccess()
     }
     
     // MARK: - 空数据
@@ -146,7 +143,6 @@ extension xListCollectionViewController {
     /// 重新加载空数据Footer
     @objc open func reloadEmptyView()
     {
-        guard self.isShowDataEmptyTip else { return }
         let isEmptyData = (self.dataArray.count == 0)
         if isEmptyData {
             self.showEmptyView()
@@ -157,7 +153,7 @@ extension xListCollectionViewController {
     /// 显示空数据提示
     @objc open func showEmptyView()
     {
-        // 调整位置
+        guard self.isShowDataEmptyTip else { return }
         if self.dataEmptyView.superview == nil {
             self.collectionView.addSubview(self.dataEmptyView)
         }
@@ -172,6 +168,7 @@ extension xListCollectionViewController {
     /// 隐藏空数据提示
     @objc open func hiddenEmptyView()
     {
+        guard self.isShowDataEmptyTip else { return }
         self.dataEmptyView.isHidden = true
         self.flowLayout.reset(footer: .zero)
     }

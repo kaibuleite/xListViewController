@@ -130,8 +130,8 @@ extension xListTableViewController {
     @objc open func refreshDataList() {
         // 模拟数据
         let list = xModel.newRandomList()
-        self.refreshSuccess()
         self.reloadData(list: list)
+        self.refreshSuccess()
     }
     
     // MARK: - 空数据
@@ -147,7 +147,6 @@ extension xListTableViewController {
     /// 重新加载空数据Footer
     @objc open func reloadEmptyView()
     {
-        guard self.isShowDataEmptyTip else { return }
         let isEmptyData = (self.dataArray.count == 0)
         if isEmptyData {
             self.showEmptyView()
@@ -158,6 +157,7 @@ extension xListTableViewController {
     /// 显示空数据提示
     @objc open func showEmptyView()
     {
+        guard self.isShowDataEmptyTip else { return }
         self.dataEmptyView.isHidden = false
         self.tableView.tableFooterView = self.dataEmptyView
         self.tableView.reloadData()
@@ -165,6 +165,7 @@ extension xListTableViewController {
     /// 隐藏空数据提示
     @objc open func hiddenEmptyView()
     {
+        guard self.isShowDataEmptyTip else { return }
         self.dataEmptyView.isHidden = true
         self.tableView.tableFooterView = nil
         self.tableView.reloadData()
