@@ -68,9 +68,10 @@ open class xCollectionViewController: UICollectionViewController {
     }
     required public override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
-        guard let xlayout = layout as? xCollectionViewFlowLayout else { return }
-        self.flowLayout = xlayout
         self.initSourceCode = true
+        if let xlayout = layout as? xCollectionViewFlowLayout {
+            self.flowLayout = xlayout
+        }
     }
     
     open override class func xDefaultViewController() -> Self {

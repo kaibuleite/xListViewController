@@ -66,6 +66,7 @@ open class xTableViewController: UITableViewController {
     }
     required public override init(style: UITableView.Style) {
         super.init(style: style)
+        self.initSourceCode = true
     }
     
     open override class func xDefaultViewController() -> Self {
@@ -74,7 +75,6 @@ open class xTableViewController: UITableViewController {
     }
     open class func xDefaultViewController(style: UITableView.Style) -> Self {
         let tvc = self.init(style: style)
-        tvc.initSourceCode = true
         return tvc
     }
     open override func viewDidLoad() {
