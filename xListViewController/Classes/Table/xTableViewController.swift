@@ -90,10 +90,10 @@ open class xTableViewController: UITableViewController {
         } else {
             // Fallback on earlier versions
         }
-        // self.tableView.rowHeight = UITableView.automaticDimension
+        //self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.rowHeight = 44
-        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
-        self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
+        //self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
+        //self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
         // 注册控件
         self.registerHeaders()
         self.registerCells()
