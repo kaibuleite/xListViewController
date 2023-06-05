@@ -40,6 +40,8 @@ open class xTableViewController: UITableViewController {
     public var isPrintScrollingLog = false
     
     // MARK: - Private Property
+    /// 对象实例化来源(默认来自Storyboard或者Xib)
+    var initSourceCode = false
     /// 滚动开始回调
     var beginScrollHandler : xHandlerScrollViewChangeStatus?
     /// 滚动中回调
@@ -72,6 +74,7 @@ open class xTableViewController: UITableViewController {
     }
     open class func xDefaultViewController(style: UITableView.Style) -> Self {
         let tvc = self.init(style: style)
+        tvc.initSourceCode = true
         return tvc
     }
     open override func viewDidLoad() {
@@ -92,8 +95,13 @@ open class xTableViewController: UITableViewController {
         }
         //self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.rowHeight = 44
-        //self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
-        //self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
+        if self.initSourceCode {
+            // 通过代码实例化默认设置头尾都为空
+            self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
+            self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: xScreenWidth, height: 0.01))
+        } else {
+            // 通过Storyboard或Xib实例化不管
+        }
         // 注册控件
         self.registerHeaders()
         self.registerCells()

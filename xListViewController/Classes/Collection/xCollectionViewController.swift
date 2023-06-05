@@ -42,6 +42,8 @@ open class xCollectionViewController: UICollectionViewController {
     public var flowLayout : xCollectionViewFlowLayout!
     
     // MARK: - Private Property
+    /// 对象实例化来源(默认来自Storyboard或者Xib)
+    var initSourceCode = false
     /// 滚动开始回调
     var beginScrollHandler : xHandlerScrollViewChangeStatus?
     /// 滚动中回调
@@ -68,6 +70,7 @@ open class xCollectionViewController: UICollectionViewController {
         super.init(collectionViewLayout: layout)
         guard let xlayout = layout as? xCollectionViewFlowLayout else { return }
         self.flowLayout = xlayout
+        self.initSourceCode = true
     }
     
     open override class func xDefaultViewController() -> Self {
