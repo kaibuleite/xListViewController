@@ -92,6 +92,7 @@ open class xListTableViewController: xTableViewController {
         }
         self.reloadEmptyView()
         self.reloadDragScrollinEndVisibleCells()
+        self.tableView.reloadData()
     }
     
 }

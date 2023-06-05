@@ -90,6 +90,7 @@ open class xListCollectionViewController: xCollectionViewController {
         }
         self.reloadEmptyView()
         self.reloadDragScrollinEndVisibleCells()
+        self.collectionView.reloadData()
     }
     
 }
