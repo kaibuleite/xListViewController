@@ -20,6 +20,8 @@ open class xTableViewController: UITableViewController {
     @IBInspectable public var xTitle : String = ""
     
     // MARK: - Public Property
+    /// 用于内存释放提示(可快速定位被释放的对象)
+    open var typeEmoji : String { return "🧬" }
     /// 是否显示中
     public var isAppear = false
     /// 是否完成数据加载
@@ -54,10 +56,11 @@ open class xTableViewController: UITableViewController {
         self.beginScrollHandler = nil
         self.scrollingHandler = nil
         self.endScrollHandler = nil
+        
         let info = self.xClassInfoStruct
         let space = info.space
         let name = info.name
-        print("🧬【\(space).\(name)】")
+        print("\(self.typeEmoji)【\(space).\(name)】")
     }
     
     // MARK: - Open Override Func
