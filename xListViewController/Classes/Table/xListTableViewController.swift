@@ -138,11 +138,9 @@ extension xListTableViewController {
     // MARK: - 空数据
     /// 空数据展示图
     @objc open func getEmptyView() -> UIView {
-        var frame = self.tableView.bounds
-        frame.size.height = 400
-        let view = xListNoDataView.loadXib()
-        view.frame = frame
-        view.isHidden = true
+        let view = xListNoDataView.xDefaultViewController()
+        view.setContainerList(self)
+        view.setTip(icon: nil, message: "没有相关数据")
         return view
     }
     /// 重新加载空数据Footer

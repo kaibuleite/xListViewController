@@ -32,6 +32,10 @@ open class xTableViewController: UITableViewController {
     public var isCloseBottomBounces = false
     /// 是否开启重新刷新滚动结束后显示的Cell功能
     public var isOpenReloadDragScrollingEndVisibleCells = false
+    /// 默认SectionHeaderHeight
+    public var defaultSectionHeaderHeight = CGFloat(0.01)
+    /// 默认SectionFooterHeight
+    public var defaultSectionFooterHeight = CGFloat(0.01)
     /// 是否还在拖拽滚动事件中
     public var isDragScrolling : Bool {
         if self.tableView.isDragging { return true }
@@ -188,12 +192,12 @@ extension xTableViewController {
     open override func tableView(_ tableView: UITableView,
                                  heightForHeaderInSection section: Int) -> CGFloat
     {
-        return 0.01
+        return self.defaultSectionHeaderHeight
     }
     open override func tableView(_ tableView: UITableView,
                                  heightForFooterInSection section: Int) -> CGFloat
     {
-        return 0.01
+        return self.defaultSectionFooterHeight
     }
     open override func tableView(_ tableView: UITableView,
                                  didSelectRowAt indexPath: IndexPath)
