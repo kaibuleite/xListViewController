@@ -3,11 +3,11 @@ PODS:
   - xDefine (1.0.6)
   - xExtension (1.1.6):
     - xDefine
-  - xListViewController (1.1.8):
+  - xListViewController (1.2.8):
     - MJRefresh
     - xExtension
     - xModel
-  - xModel (1.0.9)
+  - xModel (1.1.1)
 
 DEPENDENCIES:
   - xListViewController (from `../`)
@@ -28,9 +28,9 @@ SPEC CHECKSUMS:
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   xDefine: 74915e20fdc2bb56dc50e981684d532baa7200ab
   xExtension: ad23e756488b0b352b253626375ec6a77459538b
-  xListViewController: d16f421fc72cf9a1471233dd4d0c4be9116deca4
-  xModel: 8ce4ad9a5d9fd96b70ecfe449095a4585c46b803
+  xListViewController: 853d534fe4063f1f8c6207e70c3106c794b43153
+  xModel: 557e77453b4d9b89aba8a8b571eccc7a17404919
 
 PODFILE CHECKSUM: b86f6e363c8318fd0effa67426a12f31e2ee96ae
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

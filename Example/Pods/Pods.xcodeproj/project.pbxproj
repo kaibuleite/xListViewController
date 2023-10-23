@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		005E59769A002C5B7DD4335D4BDBC8E2 /* Color+xEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2335D368C6CEBECD2EDBC8D7BFAF57F5 /* Color+xEdit.swift */; };
+		0479BFF72AE657C500413056 /* xInputTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479BFF62AE657C500413056 /* xInputTableViewController.swift */; };
 		056733FD4ECFCEEB1D6D4EE217804DC3 /* Pods-xListViewController_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3088AB39B17C69AD5441C279D9003377 /* Pods-xListViewController_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		080CBE30497D6EA949E1AC47AFF46F10 /* View+xSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5831552554A2D7579371C345CE5BE4E3 /* View+xSnapshot.swift */; };
 		090EB02C04EB96F1A88BCBEBB6D007EA /* Image+xNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398AE6C6196E2C260DB43F049E6DCDC /* Image+xNew.swift */; };
@@ -230,6 +231,7 @@
 /* Begin PBXFileReference section */
 		00CC44936B35903E97245D658F9FC293 /* String+xCharacter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+xCharacter.swift"; path = "xExtension/Classes/Object/String/String+xCharacter.swift"; sourceTree = "<group>"; };
 		035D0326BDD8900EED024234C3D15784 /* MJRefreshConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshConfig.m; path = MJRefresh/MJRefreshConfig.m; sourceTree = "<group>"; };
+		0479BFF62AE657C500413056 /* xInputTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xInputTableViewController.swift; sourceTree = "<group>"; };
 		04D3DBBFD44C719F511821FEDEB6AB6D /* MJRefreshGifHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshGifHeader.m; path = MJRefresh/Custom/Header/MJRefreshGifHeader.m; sourceTree = "<group>"; };
 		09C05104F9AB0EDAACD449A50DE63AE8 /* Pods-xListViewController_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-xListViewController_Tests"; path = Pods_xListViewController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A63045B5A0BB9B7D0D1ACA214140B16 /* xPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = xPage.swift; path = xModel/Classes/Value/xPage.swift; sourceTree = "<group>"; };
@@ -482,10 +484,10 @@
 			isa = PBXGroup;
 			children = (
 				F1FFA2BBEDEBC43DB080F76327FF2A7A /* xCollectionViewController.swift */,
-				B8684AE014E93134384EB74CEE16BDC2 /* xListCollectionViewController.swift */,
 				55480F5030F186575F4336502A25515B /* xCollectionViewFlowLayout.swift */,
 				9FB38AABFA4A944BC5BE1B5E8C8908D9 /* xDefaultListCollectionViewController.swift */,
 				9C8F213904470880E4B5A64FBA3A176E /* xFilterListCollectionViewController.swift */,
+				B8684AE014E93134384EB74CEE16BDC2 /* xListCollectionViewController.swift */,
 				9BE8F6178EBDF6FB3B4D3B5E40466ABF /* Cells */,
 			);
 			name = Collection;
@@ -509,6 +511,7 @@
 				F76D72B6D7942444047B9BA659939C16 /* xFilterListTableViewController.swift */,
 				1A783AEEC8B1273B02350C28FB9AA1A4 /* xListTableViewController.swift */,
 				BAB39C6A8CBA90816AD32DE0962C07D8 /* xTableViewController.swift */,
+				0479BFF62AE657C500413056 /* xInputTableViewController.swift */,
 				E7019FFDCC6BFB7F01CF018AD1912CAA /* Cells */,
 			);
 			name = Table;
@@ -1223,6 +1226,7 @@
 				780444B1BB97CBE2981307EF0B9FAB86 /* xFilterListCollectionViewController.swift in Sources */,
 				6A52325417E27A79B020E16D7CD0B8B6 /* xFilterListTableViewController.swift in Sources */,
 				9D6957C11E0E6B012EF49358B0A6B824 /* xListCollectionViewController.swift in Sources */,
+				0479BFF72AE657C500413056 /* xInputTableViewController.swift in Sources */,
 				35890E1AD1F7002C537F8113B0A2C04D /* xListNoDataView.swift in Sources */,
 				917BAEA502BA58A3B1695A5F8A064057 /* xListNoDataView.xib in Sources */,
 				D44978F45BC8E3A23F93378C7DAC9389 /* xListTableViewController.swift in Sources */,

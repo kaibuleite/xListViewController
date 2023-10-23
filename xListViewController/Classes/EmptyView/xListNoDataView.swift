@@ -10,8 +10,8 @@ import UIKit
 open class xListNoDataView: UIView {
 
     // MARK: - IBOutlet Property
-    @IBOutlet public weak var tipIcon: UIImageView!
-    @IBOutlet public weak var tipLbl: UILabel!
+    @IBOutlet public weak var tipIcon: UIImageView?
+    @IBOutlet public weak var tipLbl: UILabel?
     
     // MARK: - Override Func
     open class func xDefaultViewController() -> Self {
@@ -37,7 +37,10 @@ open class xListNoDataView: UIView {
         height -= tvc.tableView(tvc.tableView, heightForHeaderInSection: 0) * 2
         // section尾部高度
         height -= tvc.tableView(tvc.tableView, heightForFooterInSection: 0) * 2
-        if height < 0 { height = 0 }
+        if height < 0 {
+            print("⚠️ Table头部和尾部高度太大，内容无法展示出来")
+            height = 0
+        }
         frame.size.height = height
         self.frame = frame
     }
@@ -50,19 +53,22 @@ open class xListNoDataView: UIView {
         height -= cvc.flowLayout.headerReferenceSize.height * 2
         // section尾部高度
         height -= cvc.flowLayout.footerReferenceSize.height * 2
-        if height < 0 { height = 0 }
+        if height < 0 {
+            print("⚠️ Collect头部和尾部高度太大，内容无法展示出来")
+            height = 0
+        }
         frame.size.height = height
         self.frame = frame
     }
     
     // MARK: - 重新加载数据
     /// 重新加载数据
-    public func setTip(icon : UIImage?,
+    public func setTip(icon : UIImage? = nil,
                        message : String)
     {
-        self.tipIcon.image = icon
-        self.tipIcon.isHidden = (icon == nil)
-        self.tipLbl.text = message
+        self.tipIcon?.image = icon
+        self.tipIcon?.isHidden = (icon == nil)
+        self.tipLbl?.text = message
         self.setNeedsLayout()
         self.layoutIfNeeded()
     }

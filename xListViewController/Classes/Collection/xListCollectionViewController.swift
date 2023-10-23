@@ -36,6 +36,7 @@ open class xListCollectionViewController: xCollectionViewController {
     // MARK: - Open Override Func
     open override func viewDidLoad() {
         super.viewDidLoad()
+        self.page.initPage = 1  // 从1开始计数
         DispatchQueue.main.async {
             // 主线程执行(方便在子类的 viewDidLoad 里设置部分参数)
             self.addMJRefresh()
@@ -49,13 +50,15 @@ open class xListCollectionViewController: xCollectionViewController {
     
     // MARK: - 数据刷新
     /// 刷新头部
-    @objc public func refreshHeader() {
-        self.page.current = 1
+    @objc public func refreshHeader()
+    {
+        self.page.resetPage()
         self.hiddenEmptyView()
         self.refreshDataList()
     }
     /// 刷新尾部
-    @objc public func refreshFooter() {
+    @objc public func refreshFooter()
+    {
         self.page.current += 1
         self.hiddenEmptyView()
         self.refreshDataList()

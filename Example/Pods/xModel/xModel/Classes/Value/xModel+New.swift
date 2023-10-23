@@ -90,9 +90,9 @@ extension xModel {
     ///   - isCopyEmpty: 是否将空数据也拷进去
     ///   - isForceCopy: 是否强制拷贝，不考虑继承关系
     /// - Returns: 拼接后的结果
-    public func xCopyIvarData(from targetModel : xModel?,
-                              isCopyEmpty : Bool = false,
-                              isForceCopy : Bool = false)
+    public func copyIvarData(from targetModel : xModel?,
+                             isCopyEmpty : Bool = false,
+                             isForceCopy : Bool = false)
     {
         guard let target = targetModel else { return }
         if isForceCopy {
@@ -112,9 +112,13 @@ extension xModel {
             if isCopyEmpty == false {
                 if let obj = value as? String {
                     if obj.isEmpty { continue }
-                } else if let obj = value as? Array<Any> {
+                }
+                else
+                if let obj = value as? Array<Any> {
                     if obj.isEmpty { continue }
-                } else if let obj = value as? Dictionary<String, Any> {
+                }
+                else
+                if let obj = value as? Dictionary<String, Any> {
                     if obj.isEmpty { continue }
                 }
             }

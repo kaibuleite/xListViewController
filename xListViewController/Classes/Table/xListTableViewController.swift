@@ -36,6 +36,7 @@ open class xListTableViewController: xTableViewController {
     // MARK: - Open Override Func
     open override func viewDidLoad() {
         super.viewDidLoad()
+        self.page.initPage = 1  // 从1开始计数
         DispatchQueue.main.async {
             // 主线程执行(方便在子类的 viewDidLoad 里设置部分参数)
             self.addMJRefresh()
@@ -51,7 +52,7 @@ open class xListTableViewController: xTableViewController {
     /// 刷新头部
     @objc public func refreshHeader()
     {
-        self.page.current = 1
+        self.page.resetPage()
         self.hiddenEmptyView()
         self.refreshDataList()
     }
