@@ -1,9 +1,9 @@
 PODS:
-  - MJRefresh (3.7.5)
+  - MJRefresh (3.7.9)
   - xDefine (1.0.6)
-  - xExtension (1.1.6):
+  - xExtension (1.1.7):
     - xDefine
-  - xListViewController (1.2.8):
+  - xListViewController (1.2.9):
     - MJRefresh
     - xExtension
     - xModel
@@ -25,10 +25,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   xDefine: 74915e20fdc2bb56dc50e981684d532baa7200ab
-  xExtension: ad23e756488b0b352b253626375ec6a77459538b
-  xListViewController: 853d534fe4063f1f8c6207e70c3106c794b43153
+  xExtension: 5ef28de4de112ec5a7ee1cce29480ea665f46b05
+  xListViewController: 781a2736db6435ab1cc18f873e5823164320638a
   xModel: 557e77453b4d9b89aba8a8b571eccc7a17404919
 
 PODFILE CHECKSUM: b86f6e363c8318fd0effa67426a12f31e2ee96ae

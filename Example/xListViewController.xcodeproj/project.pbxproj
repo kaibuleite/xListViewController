@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		00D066BD46ABA29067EB5330 /* Pods_xListViewController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A6B7AFD93E531C6C00021B /* Pods_xListViewController_Example.framework */; };
+		04C12A3F2C05AE4A0077419C /* TestListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C12A3E2C05AE4A0077419C /* TestListTableViewController.swift */; };
+		04C12A412C05AE560077419C /* TestListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C12A402C05AE560077419C /* TestListCollectionViewController.swift */; };
+		04C12A452C05AF190077419C /* TestListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C12A432C05AF190077419C /* TestListCollectionViewCell.swift */; };
+		04C12A462C05AF190077419C /* TestListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C12A442C05AF190077419C /* TestListCollectionViewCell.xib */; };
+		04C12A492C05AF290077419C /* TestListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C12A472C05AF290077419C /* TestListTableViewCell.swift */; };
+		04C12A4A2C05AF290077419C /* TestListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C12A482C05AF290077419C /* TestListTableViewCell.xib */; };
+		04C12A5E2C05DC470077419C /* TestListModuleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C12A5D2C05DC470077419C /* TestListModuleCell.swift */; };
+		04C12A602C05DC580077419C /* TestListModuleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C12A5F2C05DC580077419C /* TestListModuleCell.xib */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -28,6 +36,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04C12A3E2C05AE4A0077419C /* TestListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListTableViewController.swift; sourceTree = "<group>"; };
+		04C12A402C05AE560077419C /* TestListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListCollectionViewController.swift; sourceTree = "<group>"; };
+		04C12A432C05AF190077419C /* TestListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListCollectionViewCell.swift; sourceTree = "<group>"; };
+		04C12A442C05AF190077419C /* TestListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestListCollectionViewCell.xib; sourceTree = "<group>"; };
+		04C12A472C05AF290077419C /* TestListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListTableViewCell.swift; sourceTree = "<group>"; };
+		04C12A482C05AF290077419C /* TestListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestListTableViewCell.xib; sourceTree = "<group>"; };
+		04C12A5D2C05DC470077419C /* TestListModuleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListModuleCell.swift; sourceTree = "<group>"; };
+		04C12A5F2C05DC580077419C /* TestListModuleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestListModuleCell.xib; sourceTree = "<group>"; };
 		0600845DBF76B705996C02C9 /* Pods_xListViewController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xListViewController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A8A3632B1876D21EDE9E1A5 /* Pods-xListViewController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xListViewController_Tests.release.xcconfig"; path = "Target Support Files/Pods-xListViewController_Tests/Pods-xListViewController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		1D9957169ECBCE0AD287179A /* Pods-xListViewController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xListViewController_Tests.debug.xcconfig"; path = "Target Support Files/Pods-xListViewController_Tests/Pods-xListViewController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +85,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04C12A3D2C05AE2E0077419C /* List */ = {
+			isa = PBXGroup;
+			children = (
+				04C12A3E2C05AE4A0077419C /* TestListTableViewController.swift */,
+				04C12A402C05AE560077419C /* TestListCollectionViewController.swift */,
+				04C12A422C05AF030077419C /* Cells */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		04C12A422C05AF030077419C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				04C12A472C05AF290077419C /* TestListTableViewCell.swift */,
+				04C12A482C05AF290077419C /* TestListTableViewCell.xib */,
+				04C12A432C05AF190077419C /* TestListCollectionViewCell.swift */,
+				04C12A442C05AF190077419C /* TestListCollectionViewCell.xib */,
+				04C12A5D2C05DC470077419C /* TestListModuleCell.swift */,
+				04C12A5F2C05DC580077419C /* TestListModuleCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		607564AFEA8FA1D1C15E5BA2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +144,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				04C12A3D2C05AE2E0077419C /* List */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -212,10 +252,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = MJMT7ZMT85;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = MJMT7ZMT85;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -246,8 +288,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				04C12A4A2C05AF290077419C /* TestListTableViewCell.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				04C12A462C05AF190077419C /* TestListCollectionViewCell.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				04C12A602C05DC580077419C /* TestListModuleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,8 +383,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C12A412C05AE560077419C /* TestListCollectionViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				04C12A3F2C05AE4A0077419C /* TestListTableViewController.swift in Sources */,
+				04C12A5E2C05DC470077419C /* TestListModuleCell.swift in Sources */,
+				04C12A452C05AF190077419C /* TestListCollectionViewCell.swift in Sources */,
+				04C12A492C05AF290077419C /* TestListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +545,7 @@
 			baseConfigurationReference = 68B13D3185B62E28695867EF /* Pods-xListViewController_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MJMT7ZMT85;
 				INFOPLIST_FILE = xListViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -511,6 +562,7 @@
 			baseConfigurationReference = BDEA305AF3B989D3D7F8F445 /* Pods-xListViewController_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MJMT7ZMT85;
 				INFOPLIST_FILE = xListViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -526,6 +578,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D9957169ECBCE0AD287179A /* Pods-xListViewController_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = MJMT7ZMT85;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -548,6 +601,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1A8A3632B1876D21EDE9E1A5 /* Pods-xListViewController_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = MJMT7ZMT85;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",

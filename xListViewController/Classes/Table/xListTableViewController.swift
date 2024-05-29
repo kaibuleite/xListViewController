@@ -36,7 +36,7 @@ open class xListTableViewController: xTableViewController {
     // MARK: - Open Override Func
     open override func viewDidLoad() {
         super.viewDidLoad()
-        self.page.initPage = 1  // 从1开始计数
+        self.page.initPage = 0
         DispatchQueue.main.async {
             // 主线程执行(方便在子类的 viewDidLoad 里设置部分参数)
             self.addMJRefresh()
@@ -53,6 +53,7 @@ open class xListTableViewController: xTableViewController {
     @objc public func refreshHeader()
     {
         self.page.resetPage()
+        self.dataArray.removeAll()
         self.hiddenEmptyView()
         self.refreshDataList()
     }
@@ -83,11 +84,7 @@ open class xListTableViewController: xTableViewController {
     /// - Parameter list: 新的数据
     public func reloadData(list : [xModel])
     {
-        if self.page.current <= 1 {
-            self.dataArray = list
-        } else {
-            self.dataArray.append(contentsOf: list)
-        }
+        self.dataArray.append(contentsOf: list)
         if self.isPrintScrollingLog {
             print("***** 停止类型4: MJRefresh数据加载完成\n")
         }
@@ -131,7 +128,10 @@ extension xListTableViewController {
     /// 刷新数据
     @objc open func refreshDataList() {
         // 模拟数据
-        let list = xModel.newRandomList()
+        var list = [xModel]()
+        if arc4random() % 2 == 0 {
+            list = xModel.newRandomList()
+        }
         self.reloadData(list: list)
         self.refreshSuccess()
     }
@@ -141,7 +141,7 @@ extension xListTableViewController {
     @objc open func getEmptyView() -> UIView {
         let view = xListNoDataView.xDefaultViewController()
         view.setContainerList(self)
-        view.setTip(icon: nil, message: "没有相关数据")
+        view.setTip(style: .face, message: "没有相关数据")
         return view
     }
     /// 重新加载空数据Footer

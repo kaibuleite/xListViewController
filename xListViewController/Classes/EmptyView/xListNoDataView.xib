@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,17 +16,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="qhN-aG-5bU">
-                    <rect key="frame" x="147" y="380" width="120" height="136"/>
+                    <rect key="frame" x="160.5" y="400" width="93.5" height="96.5"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_data.png" translatesAutoresizingMaskIntoConstraints="NO" id="YFW-Mv-w1a">
-                            <rect key="frame" x="0.0" y="0.0" width="120" height="101.5"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="YFW-Mv-w1a" secondAttribute="height" multiplier="165:140" id="Tf8-UD-4Q3"/>
-                                <constraint firstAttribute="width" constant="120" id="wyl-a3-I5Q"/>
-                            </constraints>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_data_face.png" translatesAutoresizingMaskIntoConstraints="NO" id="YFW-Mv-w1a">
+                            <rect key="frame" x="0.0" y="0.0" width="93.5" height="62"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="没有数据啦~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrS-Kp-28Q">
-                            <rect key="frame" x="0.0" y="116.5" width="120" height="19.5"/>
+                            <rect key="frame" x="0.0" y="77" width="93.5" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -39,6 +35,7 @@
             <constraints>
                 <constraint firstItem="qhN-aG-5bU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0hi-9C-EuM"/>
                 <constraint firstItem="qhN-aG-5bU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="4Tx-ps-TBY"/>
+                <constraint firstItem="qhN-aG-5bU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="fvg-nN-XFN"/>
             </constraints>
             <connections>
                 <outlet property="tipIcon" destination="YFW-Mv-w1a" id="Pc5-TS-bY5"/>
@@ -48,7 +45,7 @@
         </view>
     </objects>
     <resources>
-        <image name="no_data.png" width="163" height="140"/>
+        <image name="no_data_face.png" width="62" height="62"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

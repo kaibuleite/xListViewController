@@ -6,13 +6,37 @@
 //  Copyright © 2024 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import xModel
+import xListViewController
 
-class TestListCollectionViewCell: UICollectionViewCell {
+class TestListCollectionViewCell: xCollectionViewCell {
 
+    // MARK: - IBOutlet Property
+    
+    // MARK: - Public Property
+    
+    // MARK: - Override Func
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
+    
+    // MARK: - 内容填充
+    /// 普通填充
+    override func setContentData(in cvc: xCollectionViewController? = nil,
+                                 at idp: IndexPath,
+                                 with model: xModel)
+    {
+        self.backgroundColor = .xNewRandom(alpha: 0.3)
+    }
+    
+    // MARK: - 内容大小
+    /// 内容大小
+    override class func contentSize() -> CGSize
+    {
+        var size = CGSize.zero
+        size.width = 100
+        size.height = 100
+        return size
+    }
+    
 }
