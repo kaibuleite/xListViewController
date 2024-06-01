@@ -1,6 +1,6 @@
 {
   "name": "xListViewController",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "summary": "A short description of xListViewController.",
   "swift_versions": "5",
   "description": "TODO: Add long description of the pod here.",
@@ -14,10 +14,10 @@
   },
   "source": {
     "git": "https://github.com/kaibuleite/xListViewController.git",
-    "tag": "1.2.9"
+    "tag": "1.2.10"
   },
   "platforms": {
-    "ios": "12.0"
+    "ios": "13.0"
   },
   "source_files": "xListViewController/Classes/**/*",
   "resources": "xListViewController/Assets/**/*",
