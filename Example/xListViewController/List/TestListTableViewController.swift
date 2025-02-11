@@ -22,10 +22,7 @@ class TestListTableViewController: xDefaultListTableViewController {
     // MARK: - Override Func
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 基本配置
-        self.view.backgroundColor = .groupTableViewBackground
-        self.tableView.separatorStyle = .none
-        self.isShowDataEmptyTip = true
+        // 基本配置 
     }
     
     // MARK: - 请求数据

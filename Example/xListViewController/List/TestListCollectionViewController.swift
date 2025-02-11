@@ -22,9 +22,7 @@ class TestListCollectionViewController: xDefaultListCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // 基本配置
-        self.view.backgroundColor = .groupTableViewBackground
-        self.flowLayout.reset(item: .init(width: 100, height: 100))
-        self.isShowDataEmptyTip = true
+        self.reset(item: .init(width: 100, height: 100)) 
     }
     
     // MARK: - 请求数据

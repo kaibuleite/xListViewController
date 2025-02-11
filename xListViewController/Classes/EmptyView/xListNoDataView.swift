@@ -6,80 +6,67 @@
 //
 
 import UIKit
+import xDefine
+import xExtension
 
 open class xListNoDataView: UIView {
 
     // MARK: - Enum
     /// 提示类型
-    public enum TipIconStyle {
+    public enum TipIconStyle: Int {
         /// 默认
-        case deft
+        case deft = 0
         /// 包裹
-        case pack
+        case pack = 1
         /// 脸
-        case face
+        case face = 2
         /// 消息
-        case msg
+        case msg = 3
     }
     
     // MARK: - IBOutlet Property
     @IBOutlet public weak var tipIcon: UIImageView?
     @IBOutlet public weak var tipLbl: UILabel?
     
-    // MARK: - Override Func
-    open class func xDefaultViewController() -> Self {
+    // MARK: - 实例化对象
+    /// 实例化对象
+    /// - Parameters:
+    ///   - style: 提示样式
+    ///   - message: 提示信息
+    open class func newTip(style : xListNoDataView.TipIconStyle,
+                           message : String) -> Self
+    {
+        var name = ""
+        switch style {
+        case .pack: name = "no_data_pack"
+        case .face: name = "no_data_face"
+        case .msg:  name = "no_data_message"
+        default:    name = "no_data"
+        }
+        let bundle = Bundle.init(for: Self.classForCoder())
+        let image = name.xToImage(in: bundle)
+        let view = Self.newTip(image: image,
+                               message: message)
+        return view
+    }
+    /// 实例化对象
+    ///   - image: 提示图片
+    ///   - message: 提示信息
+    open class func newTip(image : UIImage? = nil,
+                           message : String) -> Self
+    {
         let bundle = Bundle.init(for: self.classForCoder())
         let name = self.xClassInfoStruct.name
         let arr = bundle.loadNibNamed(name, owner: nil, options: nil)!
-        let view = arr.first!
-        return view as! Self
-    }
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        self.backgroundColor = .clear
-        self.isHidden = true
-    }
-
-    // MARK: - 部署列表
-    /// 部署TVC列表
-    open func setContainerList(_ tvc : xListTableViewController)
-    {
-        var frame = tvc.tableView.bounds
-        frame.size.height = frame.width
-        /*
-         var height = frame.size.height
-         // section头部高度
-         let headerH = tvc.tableView(tvc.tableView, heightForHeaderInSection: 0)
-         height -= headerH * 2
-         // section尾部高度
-         let footerH = tvc.tableView(tvc.tableView, heightForFooterInSection: 0)
-         height -= footerH * 2
-         if height < 0 {
-             print("⚠️ Table View 头部和尾部高度太大，内容无法展示出来")
-             height = 0
-         }
-         */
-        self.frame = frame
-    }
-    /// 部署CVC列表
-    open func setContainerList(_ cvc : xListCollectionViewController)
-    {
-        var frame = cvc.collectionView.bounds
-        frame.size.height = frame.width
-        /*
-         var height = frame.size.height
-         // section头部高度
-         let headerH = cvc.flowLayout.headerReferenceSize.height
-         height -= headerH * 2
-         // section尾部高度
-         let footerH = cvc.flowLayout.footerReferenceSize.height
-         height -= footerH * 2
-         if height < 0 {
-             print("⚠️ Collect View 头部和尾部高度太大，内容无法展示出来")
-             height = 0
-         }
-         */
-        self.frame = frame
+        let view = arr.first! as! Self
+        
+        view.tipIcon?.image = image
+        view.tipIcon?.isHidden = (image == nil)
+        view.tipLbl?.text = message
+        view.frame = .init(x: 0, y: 0,
+                           width: xScreenWidth,
+                           height: xScreenWidth)
+        return view
     }
     
     // MARK: - 设置提示内容

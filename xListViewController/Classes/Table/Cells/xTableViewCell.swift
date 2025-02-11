@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import xExtension
 import xModel
 
 open class xTableViewCell: UITableViewCell {
+    
+    // MARK: - Public Property
+    public var idp = IndexPath.init(row: -1, section: -1)
     
     // MARK: - Override Func
     open override func awakeFromNib() {
@@ -21,23 +25,19 @@ open class xTableViewCell: UITableViewCell {
                              at idp : IndexPath,
                              with model : xModel)
     {
+        self.idp = idp
+        /* 设置Cell内容 */
+    }
+    
+    /// 重新加载显示时的数据
+    open func reloadVisibleContentData()
+    {
         /*
-        tvc.isOpenReloadDragScrollingEndVisibleCells = true
-        if tvc.isDragScrolling {
-            // 设置缓存图片
-            let icon = UIImageView.init()
-            let imgurl = ""
-            if let img = xAppManager.getSDCacheImage(forKey: imgurl) {
-                icon.image = img
-            } else {
-                icon.image = xAppManager.shared.placeholderImage
-            }
-        } else {
-            // 异步下载图片（该方法会在scrollview停止滚动后才调用，优化性能
-            let icon = UIImageView.init()
-            let imgurl = ""
-            icon.sd_setImage(with: imgurl.xToURL(), placeholderImage: xAppManager.shared.placeholderImage, options: .retryFailed, completed: nil)
-        }*/
+         该方法会在scrollview停止滚动后才调用
+         为了优化网络加载图片导致的卡顿可以将图片放到这里加载
+         model 和 list 在 setContentData 时保存
+         */
+//        print("Reload Visible \(self.idp.row)")
     }
     
     // MARK: - 内容高度

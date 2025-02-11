@@ -26,35 +26,10 @@ open class xDefaultListCollectionViewController: xListCollectionViewController {
         self.reset(item: size)
     }
     
-}
-
-// MARK: - Cell数据
-extension xDefaultListCollectionViewController {
-    
     // MARK: - 注册Cell
     /// 注册Cell
     open override func registerCells() {
         xCellClass.register(in: self, identifier: "Cell")
     }
-    // MARK: - 默认Cell
-    /// 默认Cell
-    @objc open func defaultCell(at idp : IndexPath) -> UICollectionViewCell
-    {
-        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: idp) as! xCollectionViewCell
-        // 数据填充
-        let model = self.dataArray[idp.row]
-        cell.setContentData(in: self, at: idp, with: model)
-        
-        return cell
-    }
-}
-
-// MARK: - Collection view data source
-extension xDefaultListCollectionViewController {
     
-    open override func collectionView(_ collectionView: UICollectionView,
-                                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        return self.defaultCell(at: indexPath)
-    }
-} 
+}
