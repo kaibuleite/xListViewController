@@ -22,7 +22,7 @@ open class xCollectionViewController: UICollectionViewController {
     /// 是否显示中
     public var isAppear = false
     /// 是否完成数据加载
-    public var isRequestDataCompleted = true
+    public var isRequestDataCompleted = false
     
     /// 是否关闭顶部下拉回弹
     public var isCloseTopBounces = false

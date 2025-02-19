@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'xListViewController'
-  s.version          = '1.2.11'
+  s.version          = '1.2.12'
   s.summary          = 'A short description of xListViewController.'
   s.swift_version    = '5'      # Swift版本号
 

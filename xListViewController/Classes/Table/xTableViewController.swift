@@ -22,7 +22,7 @@ open class xTableViewController: UITableViewController {
     /// 是否显示中
     public var isAppear = false
     /// 数据请求状态
-    public var isRequestDataCompleted = true
+    public var isRequestDataCompleted = false
     
     /// 是否关闭顶部下拉回弹
     public var isCloseTopBounces = false

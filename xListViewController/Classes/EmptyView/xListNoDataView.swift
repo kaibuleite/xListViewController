@@ -28,6 +28,12 @@ open class xListNoDataView: UIView {
     @IBOutlet public weak var tipIcon: UIImageView?
     @IBOutlet public weak var tipLbl: UILabel?
     
+    // MARK: - Override Func
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = .clear
+    }
+    
     // MARK: - 实例化对象
     /// 实例化对象
     /// - Parameters:
